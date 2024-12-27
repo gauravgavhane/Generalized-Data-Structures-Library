@@ -1,17 +1,17 @@
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
 //  Generalized Data Structures Library
 //
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 #include<iostream>
 using namespace std;
 
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
-// Code of Singly Linear
+// Singly Linear Linked List
 //
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 struct nodeSL
@@ -19,6 +19,13 @@ struct nodeSL
     T data;
     struct nodeSL *next;
 };
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   SinglyLL
+//  Description     :   Implements a singly linear linked list
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 class SinglyLL
@@ -42,12 +49,30 @@ class SinglyLL
         void DeleteAtPos(int iPos);
 };
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:  SinglyLL
+//  Description:       Initializes an empty singly linear linked list
+//  Input:             None
+//  Output:            None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 SinglyLL<T>::SinglyLL()
 {
     First = NULL;
     iCount = 0;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays all elements of the linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyLL<T>::Display()
@@ -62,11 +87,29 @@ void SinglyLL<T>::Display()
     cout<<"NULL"<<endl;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Count
+//  Description:      Counts the number of nodes in the linked list
+//  Input:            None
+//  Output:           Integer (count of nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 int SinglyLL<T>::Count()
 {
     return iCount;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertFirst
+//  Description:      Inserts an element at the beginning of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyLL<T>::InsertFirst(T No)
@@ -89,6 +132,15 @@ void SinglyLL<T>::InsertFirst(T No)
     }
     iCount++;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertLast
+//  Description:      Inserts an element at the end of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyLL<T>::InsertLast(T No)
@@ -115,6 +167,16 @@ void SinglyLL<T>::InsertLast(T No)
     }
     iCount++;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertAtPos
+//  Description:      Inserts an element at specific position of the list
+//  Input:            T (generic data type)  
+//                    Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyLL<T>::InsertAtPos(T No, int iPos)
@@ -156,6 +218,15 @@ void SinglyLL<T>::InsertAtPos(T No, int iPos)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteFirst
+//  Description:      Deletes the first element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void SinglyLL<T>::DeleteFirst()
 {
@@ -178,6 +249,15 @@ void SinglyLL<T>::DeleteFirst()
     }
     iCount--;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteLast
+//  Description:      Deletes the last element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyLL<T>::DeleteLast()
@@ -205,6 +285,15 @@ void SinglyLL<T>::DeleteLast()
     }
     iCount--;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteAtPos
+//  Description:      Deletes an element from specific position of the list
+//  Input:            Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyLL<T>::DeleteAtPos(int iPos)
@@ -245,11 +334,11 @@ void SinglyLL<T>::DeleteAtPos(int iPos)
     }    
 }
 
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
-// Code of Doubly Linear
+// Doubly Linear Linked List
 //
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 struct nodeDL
@@ -258,6 +347,13 @@ struct nodeDL
     struct nodeDL *next;
     struct nodeDL *prev;
 };
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   DoublyLL
+//  Description     :   Implements a doubly linear linked list
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 class DoublyLL
@@ -281,12 +377,30 @@ class DoublyLL
         void DeleteAtPos(int iPos);
 };
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:  DoublyLL
+//  Description:       Initializes an empty doubly linear linked list
+//  Input:             None
+//  Output:            None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 DoublyLL<T>::DoublyLL()
 {
     First = NULL;
     iCount = 0;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays all elements of the linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyLL<T>::Display()
@@ -301,11 +415,29 @@ void DoublyLL<T>::Display()
     cout<<"NULL"<<endl;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Count
+//  Description:      Counts the number of nodes in the linked list
+//  Input:            None
+//  Output:           Integer (count of nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 int DoublyLL<T>::Count()
 {
     return iCount;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertFirst
+//  Description:      Inserts an element at the beginning of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyLL<T>::InsertFirst(T No)
@@ -330,6 +462,15 @@ void DoublyLL<T>::InsertFirst(T No)
     }
     iCount++;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertLast
+//  Description:      Inserts an element at the end of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyLL<T>::InsertLast(T No)
@@ -358,6 +499,16 @@ void DoublyLL<T>::InsertLast(T No)
     }
     iCount++;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertAtPos
+//  Description:      Inserts an element at specific position of the list
+//  Input:            T (generic data type)  
+//                    Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyLL<T>::InsertAtPos(T No, int iPos)
@@ -404,6 +555,15 @@ void DoublyLL<T>::InsertAtPos(T No, int iPos)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteFirst
+//  Description:      Deletes the first element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void DoublyLL<T>::DeleteFirst()
 {
@@ -425,6 +585,15 @@ void DoublyLL<T>::DeleteFirst()
     }
     iCount--;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteLast
+//  Description:      Deletes the last element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyLL<T>::DeleteLast()
@@ -452,6 +621,15 @@ void DoublyLL<T>::DeleteLast()
     }
     iCount--;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteAtPos
+//  Description:      Deletes an element from specific position of the list
+//  Input:            Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyLL<T>::DeleteAtPos(int iPos)
@@ -497,11 +675,11 @@ void DoublyLL<T>::DeleteAtPos(int iPos)
     }    
 }
 
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
-// Code of Singly Circular
+// Singly Circular Linked List
 //
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 struct nodeSC
@@ -509,6 +687,13 @@ struct nodeSC
     T data;
     struct nodeSC *next;
 };
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   SinglyCL
+//  Description     :   Implements a singly circular linked list
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 class SinglyCL
@@ -529,12 +714,30 @@ class SinglyCL
         int Count();
 };
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:  SinglyCL
+//  Description:       Initializes an empty singly circular linked list
+//  Input:             None
+//  Output:            None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 SinglyCL<T>::SinglyCL()
 {
     First = NULL;
     Last = NULL;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays all elements of the linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyCL<T>::Display()
@@ -555,6 +758,15 @@ void SinglyCL<T>::Display()
     cout<<endl;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Count
+//  Description:      Counts the number of nodes in the linked list
+//  Input:            None
+//  Output:           Integer (count of nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 int SinglyCL<T>::Count()
 {
@@ -574,6 +786,15 @@ int SinglyCL<T>::Count()
 
     return iCnt;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertFirst
+//  Description:      Inserts an element at the beginning of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyCL<T>::InsertFirst(T no)
@@ -598,6 +819,15 @@ void SinglyCL<T>::InsertFirst(T no)
     Last -> next = First;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertLast
+//  Description:      Inserts an element at the end of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void SinglyCL<T>::InsertLast(T no)
 {
@@ -621,6 +851,16 @@ void SinglyCL<T>::InsertLast(T no)
     Last -> next = First;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertAtPos
+//  Description:      Inserts an element at specific position of the list
+//  Input:            T (generic data type)  
+//                    Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void SinglyCL<T>::InsertAtPos(T no, int ipos)
 {
@@ -642,25 +882,34 @@ void SinglyCL<T>::InsertAtPos(T no, int ipos)
     }
     else
     {
-            struct nodeSC<T> * newn = NULL;
+        struct nodeSC<T> * newn = NULL;
 
-            newn = new struct nodeSC<T>;
+        newn = new struct nodeSC<T>;
 
-            newn->data = no;
-            newn->next = NULL;
+        newn->data = no;
+        newn->next = NULL;
 
-            struct nodeSC<T> * temp = First;
-            int iCnt = 0;
+        struct nodeSC<T> * temp = First;
+        int iCnt = 0;
 
-            for(iCnt = 1; iCnt < ipos-1; iCnt++)
-            {
-                temp = temp->next;
-            }
+        for(iCnt = 1; iCnt < ipos-1; iCnt++)
+        {
+            temp = temp->next;
+        }
 
-            newn->next = temp -> next;
-            temp->next = newn;
+        newn->next = temp -> next;
+        temp->next = newn;
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteFirst
+//  Description:      Deletes the first element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyCL<T>::DeleteFirst()
@@ -683,6 +932,15 @@ void SinglyCL<T>::DeleteFirst()
         Last->next = First;
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteLast
+//  Description:      Deletes the last element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void SinglyCL<T>::DeleteLast()
@@ -713,6 +971,15 @@ void SinglyCL<T>::DeleteLast()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteAtPos
+//  Description:      Deletes an element from specific position of the list
+//  Input:            Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void SinglyCL<T>::DeleteAtPos(int ipos)
 {
@@ -734,26 +1001,26 @@ void SinglyCL<T>::DeleteAtPos(int ipos)
     }
     else
     {
-            struct nodeSC<T> * temp1 = First;
-            int iCnt = 0;
+        struct nodeSC<T> * temp1 = First;
+        int iCnt = 0;
 
-            for(iCnt = 1; iCnt < ipos-1; iCnt++)
-            {
-                temp1 = temp1->next;
-            }
+        for(iCnt = 1; iCnt < ipos-1; iCnt++)
+        {
+            temp1 = temp1->next;
+        }
 
-            struct nodeSC<T> * temp2 = temp1->next;
+        struct nodeSC<T> * temp2 = temp1->next;
 
-            temp1->next = temp2->next;
-            delete temp2;
+        temp1->next = temp2->next;
+        delete temp2;
     }
 }
 
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
-// Code of Doubly Circular
+//  Doubly Circular Linked List
 //
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 struct nodeDC
@@ -762,6 +1029,13 @@ struct nodeDC
     struct nodeDC *next;
     struct nodeDC *prev;
 };
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   DoublyCL
+//  Description     :   Implements a doubly circular linked list
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 class DoublyCL
@@ -786,6 +1060,15 @@ class DoublyCL
         void DeleteAtPos(int iPos);
 };
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:  DoublyCL
+//  Description:       Initializes an empty doubly circular linked list
+//  Input:             None
+//  Output:            None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 DoublyCL<T>:: DoublyCL()
 {
@@ -793,6 +1076,15 @@ DoublyCL<T>:: DoublyCL()
     Last = NULL;
     iCount = 0;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays all elements of the linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyCL<T>::Display()
@@ -813,11 +1105,29 @@ void DoublyCL<T>::Display()
     cout<<endl;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Count
+//  Description:      Counts the number of nodes in the linked list
+//  Input:            None
+//  Output:           Integer (count of nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 int DoublyCL<T>::Count()
 {
     return iCount;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertFirst
+//  Description:      Inserts an element at the beginning of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyCL<T>::InsertFirst(T No)
@@ -847,6 +1157,15 @@ void DoublyCL<T>::InsertFirst(T No)
     iCount++;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertLast
+//  Description:      Inserts an element at the end of the linked list
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void DoublyCL<T>::InsertLast(T No)
 {
@@ -874,6 +1193,16 @@ void DoublyCL<T>::InsertLast(T No)
 
     iCount++;    
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertAtPos
+//  Description:      Inserts an element at specific position of the list
+//  Input:            T (generic data type)  
+//                    Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyCL<T>::InsertAtPos(T No, int iPos)
@@ -922,6 +1251,15 @@ void DoublyCL<T>::InsertAtPos(T No, int iPos)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteFirst
+//  Description:      Deletes the first element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void DoublyCL<T>::DeleteFirst()
 {
@@ -944,6 +1282,15 @@ void DoublyCL<T>::DeleteFirst()
     }
     iCount--;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteLast
+//  Description:      Deletes the last element of the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyCL<T>::DeleteLast()
@@ -968,6 +1315,15 @@ void DoublyCL<T>::DeleteLast()
     }
     iCount--;    
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DeleteAtPos
+//  Description:      Deletes an element from specific position of the list
+//  Input:            Integer (Position of element)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void DoublyCL<T>::DeleteAtPos(int iPos)
@@ -1007,11 +1363,11 @@ void DoublyCL<T>::DeleteAtPos(int iPos)
     }    
 }
 
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
-// Code of Stack
+//  STACK
 //
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 template<class T>
 struct NodeS
@@ -1019,6 +1375,13 @@ struct NodeS
     T data;
     struct NodeS *next;
 };
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   Stack
+//  Description     :   Implements a stack
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template<class T>
 class Stack
@@ -1035,12 +1398,30 @@ class Stack
         int CountNode();
 };
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:  Stack
+//  Description:       Initializes an empty stack
+//  Input:             None
+//  Output:            None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template<class T>
 Stack<T>::Stack()
 {
     First = NULL;
     iCount = 0;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Push
+//  Description:      Inserts the new element in the stack
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template<class T>
 void Stack<T>::Push(T no)
@@ -1055,6 +1436,15 @@ void Stack<T>::Push(T no)
     First = newn;
     iCount++;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Pop
+//  Description:      Deletes the element from stack
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
 void Stack<T>::Pop()
@@ -1075,6 +1465,15 @@ void Stack<T>::Pop()
     iCount--;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays all elements of the stack
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template<class T>
 void Stack<T>::Display()
 {
@@ -1088,17 +1487,26 @@ void Stack<T>::Display()
     cout<<endl;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CountNode
+//  Description:      Counts the number of nodes of the stack
+//  Input:            None
+//  Output:           Integer (count of nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template<class T>
 int Stack<T>::CountNode()
 {
     return iCount;
 }
 
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
-// Code of Queue
+//  QUEUE
 //
-/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 template<class T>
 struct nodeQ
@@ -1106,6 +1514,13 @@ struct nodeQ
     T data;
     struct nodeQ *next;
 };
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   Queue
+//  Description     :   Implements a queue
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template<class T>
 class Queue
@@ -1122,12 +1537,30 @@ class Queue
         int CountNode();
 };
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:  Queue
+//  Description:       Initializes an empty queue
+//  Input:             None
+//  Output:            None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template<class T>
 Queue<T>::Queue()
 {
     First = NULL;
     iCount = 0;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Enque
+//  Description:      Inserts the new element in the queue
+//  Input:            T (generic data type)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
 
 template<class T>
 void Queue<T>::Enqueue(T no)
@@ -1155,6 +1588,15 @@ void Queue<T>::Enqueue(T no)
     iCount++;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Dequeue
+//  Description:      Deletes the element from queue
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 void Queue<T>::Dequeue()
 {
@@ -1174,6 +1616,15 @@ void Queue<T>::Dequeue()
     iCount--;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays all elements of the queue
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template<class T>
 void Queue<T>::Display()
 {
@@ -1187,17 +1638,24 @@ void Queue<T>::Display()
     cout<<endl;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CountNode
+//  Description:      Counts the number of nodes of the queue
+//  Input:            None
+//  Output:           Integer (count of nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template<class T>
 int Queue<T>::CountNode()
 {
     return iCount;
 }
 
-/////////////////////////////////////////////////
-//
-//  Main Function
-//
-/////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+//  Entry point function
+/////////////////////////////////////////////////////////////////////////////////
 
 int main()
 {
