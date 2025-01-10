@@ -1842,6 +1842,196 @@ bool SearchAlgorithms<T>::BinarySearch(T Value)
 }
 
 /////////////////////////////////////////////////////////////////////////////////
+//
+//  SortAlgorithms
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+class SortAlgorithms
+{
+private:
+    T *Arr;
+    int iSize;
+
+public:
+    SortAlgorithms(int size); // Constructor to initialize array size
+    ~SortAlgorithms();        // Destructor to release array memory
+    void Accept();            // Accept array elements
+    void Display();           // Display array elements
+    void BubbleSort();        // Performs Bubble Sort
+    void SelectionSort();     // Performs Selection Sort
+    void InsertionSort();     // Performs Insertion Sort
+};
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:    SortAlgorithms
+//  Description:         Initializes array and its size
+//  Input:               int (Size of array)
+//  Output:              None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+SortAlgorithms<T>::SortAlgorithms(int size)
+{
+    this->iSize = size;
+    this->Arr = new T[size];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Destructor Name:     ~SortAlgorithms
+//  Description:         Releases allocated memory for the array
+//  Input:               None
+//  Output:              None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+SortAlgorithms<T>::~SortAlgorithms()
+{
+    delete[] Arr;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Accept
+//  Description:      Accepts the elements for the array
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SortAlgorithms<T>::Accept()
+{
+    int i = 0;
+
+    cout << "Enter the elements: \n";
+    for (i = 0; i < iSize; i++)
+    {
+        cin >> Arr[i];
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays the elements of the array
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SortAlgorithms<T>::Display()
+{
+    int i = 0;
+
+    cout << "Array elements are: \n";
+    for (i = 0; i < iSize; i++)
+    {
+        cout << Arr[i] << "\t";
+    }
+    cout << endl;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    BubbleSort
+//  Description:      Performs Bubble Sort on the array
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SortAlgorithms<T>::BubbleSort()
+{
+    T temp;
+    int i = 0, j = 0;
+    bool flag = true;
+
+    for (i = 0; (i < iSize - 1) && (flag == true); i++)
+    {
+        flag = false;
+        for (j = 0; j < iSize - 1 - i; j++)
+        {
+            if (Arr[j] > Arr[j + 1])
+            {
+                temp = Arr[j];
+                Arr[j] = Arr[j + 1];
+                Arr[j + 1] = temp;
+                flag = true;
+            }
+        }
+
+        cout << "\nArray after pass : " << i + 1 << "\n";
+        Display();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SelectionSort
+//  Description:      Performs Selection Sort on the array
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SortAlgorithms<T>::SelectionSort()
+{
+    int i = 0, j = 0, minIndex = 0;
+    T temp;
+
+    for (i = 0; i < iSize - 1; i++)
+    {
+        minIndex = i;
+
+        for (int j = i + 1; j < iSize; j++)
+        {
+            if (Arr[j] < Arr[minIndex])
+            {
+                minIndex = j;
+            }
+        }
+
+        temp = Arr[i];
+        Arr[i] = Arr[minIndex];
+        Arr[minIndex] = temp;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    InsertionSort
+//  Description:      Performs Insertion Sort on the array
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SortAlgorithms<T>::InsertionSort()
+{
+    int i = 0, j = 0;
+    T selected;
+
+    for (i = 1; i < iSize; i++)
+    {
+        for (j = i - 1, selected = Arr[i]; (j >= 0) && (Arr[j] > selected); j--)
+        {
+            Arr[j + 1] = Arr[j];
+        }
+        Arr[j + 1] = selected;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
 //  Entry point function
 /////////////////////////////////////////////////////////////////////////////////
 
