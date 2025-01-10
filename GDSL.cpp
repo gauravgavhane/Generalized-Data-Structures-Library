@@ -4,7 +4,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -30,23 +30,23 @@ struct nodeSL
 template <class T>
 class SinglyLL
 {
-    private:
-        struct nodeSL<T> * First;
-        int iCount;
+private:
+    struct nodeSL<T> *First;
+    int iCount;
 
-    public:
-        SinglyLL();
+public:
+    SinglyLL();
 
-        void Display();
-        int Count();
+    void Display();
+    int Count();
 
-        void InsertFirst(T No);
-        void InsertLast(T No);
-        void InsertAtPos(T No, int iPos);
+    void InsertFirst(T No);
+    void InsertLast(T No);
+    void InsertAtPos(T No, int iPos);
 
-        void DeleteFirst();
-        void DeleteLast();
-        void DeleteAtPos(int iPos);
+    void DeleteFirst();
+    void DeleteLast();
+    void DeleteAtPos(int iPos);
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -77,14 +77,14 @@ SinglyLL<T>::SinglyLL()
 template <class T>
 void SinglyLL<T>::Display()
 {
-    struct nodeSL<T> * temp = First;
+    struct nodeSL<T> *temp = First;
 
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        cout<<"| "<<temp->data<<"|-> ";
-        temp = temp -> next;
+        cout << "| " << temp->data << "|-> ";
+        temp = temp->next;
     }
-    cout<<"NULL"<<endl;
+    cout << "NULL" << endl;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -114,14 +114,14 @@ int SinglyLL<T>::Count()
 template <class T>
 void SinglyLL<T>::InsertFirst(T No)
 {
-    struct nodeSL<T> * newn = NULL;
+    struct nodeSL<T> *newn = NULL;
 
     newn = new nodeSL<T>;
 
     newn->data = No;
     newn->next = NULL;
 
-    if(First == NULL)
+    if (First == NULL)
     {
         First = newn;
     }
@@ -145,25 +145,25 @@ void SinglyLL<T>::InsertFirst(T No)
 template <class T>
 void SinglyLL<T>::InsertLast(T No)
 {
-    struct nodeSL<T> * newn = NULL;
-    struct nodeSL<T> * temp = First;
+    struct nodeSL<T> *newn = NULL;
+    struct nodeSL<T> *temp = First;
 
     newn = new nodeSL<T>;
 
     newn->data = No;
     newn->next = NULL;
 
-    if(First == NULL) 
+    if (First == NULL)
     {
         First = newn;
     }
     else
     {
-        while(temp->next != NULL)
+        while (temp->next != NULL)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
-        temp -> next = newn;
+        temp->next = newn;
     }
     iCount++;
 }
@@ -172,7 +172,7 @@ void SinglyLL<T>::InsertLast(T No)
 //
 //  Function Name:    InsertAtPos
 //  Description:      Inserts an element at specific position of the list
-//  Input:            T (generic data type)  
+//  Input:            T (generic data type)
 //                    Integer (Position of element)
 //  Output:           None
 //
@@ -181,39 +181,39 @@ void SinglyLL<T>::InsertLast(T No)
 template <class T>
 void SinglyLL<T>::InsertAtPos(T No, int iPos)
 {
-    struct nodeSL<T> * newn = NULL;
+    struct nodeSL<T> *newn = NULL;
     int i = 0;
-    struct nodeSL<T> * temp;
+    struct nodeSL<T> *temp;
 
-    if((iPos < 1) || (iPos > iCount+1))
+    if ((iPos < 1) || (iPos > iCount + 1))
     {
-        cout<<"Invalid position"<<endl;
+        cout << "Invalid position" << endl;
         return;
     }
 
-    if(iPos == 1)
+    if (iPos == 1)
     {
         InsertFirst(No);
     }
-    else if(iPos == iCount+1)
+    else if (iPos == iCount + 1)
     {
         InsertLast(No);
     }
-    else 
+    else
     {
         temp = First;
-        
+
         newn = new nodeSL<T>;
         newn->data = No;
         newn->next = NULL;
 
-        for(i = 1; i < iPos-1; i++)
+        for (i = 1; i < iPos - 1; i++)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
 
         newn->next = temp->next;
-        temp -> next = newn;
+        temp->next = newn;
         iCount++;
     }
 }
@@ -230,21 +230,21 @@ void SinglyLL<T>::InsertAtPos(T No, int iPos)
 template <class T>
 void SinglyLL<T>::DeleteFirst()
 {
-    struct nodeSL<T> * temp = First;
+    struct nodeSL<T> *temp = First;
 
-    if(First == NULL)
+    if (First == NULL)
     {
-        cout<<"Linked list is empty"<<endl;
+        cout << "Linked list is empty" << endl;
         return;
     }
-    else if(First -> next == NULL)
+    else if (First->next == NULL)
     {
         delete First;
         First = NULL;
     }
     else
     {
-        First = First -> next;
+        First = First->next;
         delete temp;
     }
     iCount--;
@@ -262,23 +262,23 @@ void SinglyLL<T>::DeleteFirst()
 template <class T>
 void SinglyLL<T>::DeleteLast()
 {
-    struct nodeSL<T> * temp = First;
+    struct nodeSL<T> *temp = First;
 
-    if(First == NULL)
+    if (First == NULL)
     {
-        cout<<"Linked list is empty"<<endl;
+        cout << "Linked list is empty" << endl;
         return;
     }
-    else if(First -> next == NULL)
+    else if (First->next == NULL)
     {
         delete First;
         First = NULL;
     }
     else
     {
-        while(temp->next->next != NULL)
+        while (temp->next->next != NULL)
         {
-            temp = temp ->next;
+            temp = temp->next;
         }
         delete temp->next;
         temp->next = NULL;
@@ -299,30 +299,30 @@ template <class T>
 void SinglyLL<T>::DeleteAtPos(int iPos)
 {
     int i = 0;
-    struct nodeSL<T> * temp1;
-    struct nodeSL<T> * temp2;
+    struct nodeSL<T> *temp1;
+    struct nodeSL<T> *temp2;
 
-    if((iPos < 1) || (iPos > iCount))
+    if ((iPos < 1) || (iPos > iCount))
     {
-        cout<<"Invalid position"<<endl;
+        cout << "Invalid position" << endl;
         return;
     }
 
-    if(iPos == 1)
+    if (iPos == 1)
     {
         DeleteFirst();
     }
-    else if(iPos == iCount)
+    else if (iPos == iCount)
     {
         DeleteLast();
     }
-    else 
+    else
     {
         temp1 = First;
 
-        for(i = 1; i < iPos-1; i++)
+        for (i = 1; i < iPos - 1; i++)
         {
-            temp1 = temp1 -> next;
+            temp1 = temp1->next;
         }
 
         temp2 = temp1->next;
@@ -331,7 +331,7 @@ void SinglyLL<T>::DeleteAtPos(int iPos)
         delete temp2;
 
         iCount--;
-    }    
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -358,23 +358,23 @@ struct nodeDL
 template <class T>
 class DoublyLL
 {
-    private:
-        struct nodeDL<T> *First;
-        int iCount;
+private:
+    struct nodeDL<T> *First;
+    int iCount;
 
-    public:
-        DoublyLL();
+public:
+    DoublyLL();
 
-        void Display();
-        int Count();
+    void Display();
+    int Count();
 
-        void InsertFirst(T No);
-        void InsertLast(T No);
-        void InsertAtPos(T No, int iPos);
+    void InsertFirst(T No);
+    void InsertLast(T No);
+    void InsertAtPos(T No, int iPos);
 
-        void DeleteFirst();
-        void DeleteLast();
-        void DeleteAtPos(int iPos);
+    void DeleteFirst();
+    void DeleteLast();
+    void DeleteAtPos(int iPos);
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -405,14 +405,14 @@ DoublyLL<T>::DoublyLL()
 template <class T>
 void DoublyLL<T>::Display()
 {
-    struct nodeDL<T> * temp = First;
+    struct nodeDL<T> *temp = First;
 
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        cout<<"| "<<temp->data<<" |<=> ";
-        temp = temp -> next;
+        cout << "| " << temp->data << " |<=> ";
+        temp = temp->next;
     }
-    cout<<"NULL"<<endl;
+    cout << "NULL" << endl;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -442,7 +442,7 @@ int DoublyLL<T>::Count()
 template <class T>
 void DoublyLL<T>::InsertFirst(T No)
 {
-    struct nodeDL<T> * newn = NULL;
+    struct nodeDL<T> *newn = NULL;
 
     newn = new nodeDL<T>;
 
@@ -450,7 +450,7 @@ void DoublyLL<T>::InsertFirst(T No)
     newn->next = NULL;
     newn->prev = NULL;
 
-    if(First == NULL)
+    if (First == NULL)
     {
         First = newn;
     }
@@ -475,8 +475,8 @@ void DoublyLL<T>::InsertFirst(T No)
 template <class T>
 void DoublyLL<T>::InsertLast(T No)
 {
-    struct nodeDL<T> * newn = NULL;
-    struct nodeDL<T> * temp = First;
+    struct nodeDL<T> *newn = NULL;
+    struct nodeDL<T> *temp = First;
 
     newn = new nodeDL<T>;
 
@@ -484,17 +484,17 @@ void DoublyLL<T>::InsertLast(T No)
     newn->next = NULL;
     newn->prev = NULL;
 
-    if(First == NULL)
+    if (First == NULL)
     {
         First = newn;
     }
     else
     {
-        while(temp->next != NULL)
+        while (temp->next != NULL)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
-        temp -> next = newn;
+        temp->next = newn;
         newn->prev = temp;
     }
     iCount++;
@@ -504,7 +504,7 @@ void DoublyLL<T>::InsertLast(T No)
 //
 //  Function Name:    InsertAtPos
 //  Description:      Inserts an element at specific position of the list
-//  Input:            T (generic data type)  
+//  Input:            T (generic data type)
 //                    Integer (Position of element)
 //  Output:           None
 //
@@ -513,25 +513,25 @@ void DoublyLL<T>::InsertLast(T No)
 template <class T>
 void DoublyLL<T>::InsertAtPos(T No, int iPos)
 {
-    struct nodeDL<T> * newn = NULL;
+    struct nodeDL<T> *newn = NULL;
     int i = 0;
-    struct nodeDL<T> * temp;
+    struct nodeDL<T> *temp;
 
-    if((iPos < 1) || (iPos > iCount+1))
+    if ((iPos < 1) || (iPos > iCount + 1))
     {
-        cout<<"Invalid position"<<endl;
+        cout << "Invalid position" << endl;
         return;
     }
 
-    if(iPos == 1)
+    if (iPos == 1)
     {
         InsertFirst(No);
     }
-    else if(iPos == iCount+1)
+    else if (iPos == iCount + 1)
     {
         InsertLast(No);
     }
-    else 
+    else
     {
         temp = First;
 
@@ -541,9 +541,9 @@ void DoublyLL<T>::InsertAtPos(T No, int iPos)
         newn->next = NULL;
         newn->prev = NULL;
 
-        for(i = 1; i < iPos-1; i++)
+        for (i = 1; i < iPos - 1; i++)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
 
         newn->next = temp->next;
@@ -567,19 +567,19 @@ void DoublyLL<T>::InsertAtPos(T No, int iPos)
 template <class T>
 void DoublyLL<T>::DeleteFirst()
 {
-    if(First == NULL)
+    if (First == NULL)
     {
-        cout<<"Linked list is empty"<<endl;
+        cout << "Linked list is empty" << endl;
         return;
     }
-    else if(First -> next == NULL)
+    else if (First->next == NULL)
     {
         delete First;
         First = NULL;
     }
     else
     {
-        First = First -> next;
+        First = First->next;
         delete First->prev;
         First->prev = NULL;
     }
@@ -598,23 +598,23 @@ void DoublyLL<T>::DeleteFirst()
 template <class T>
 void DoublyLL<T>::DeleteLast()
 {
-    struct nodeDL<T> * temp = First;
+    struct nodeDL<T> *temp = First;
 
-    if(First == NULL)
+    if (First == NULL)
     {
-        cout<<"Linked list is empty"<<endl;
+        cout << "Linked list is empty" << endl;
         return;
     }
-    else if(First -> next == NULL)
+    else if (First->next == NULL)
     {
         delete First;
         First = NULL;
     }
     else
     {
-        while(temp->next->next != NULL)
+        while (temp->next->next != NULL)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
         delete temp->next;
         temp->next = NULL;
@@ -635,30 +635,30 @@ template <class T>
 void DoublyLL<T>::DeleteAtPos(int iPos)
 {
     int i = 0;
-    struct nodeDL<T> * temp1;
-    struct nodeDL<T> * temp2;
+    struct nodeDL<T> *temp1;
+    struct nodeDL<T> *temp2;
 
-    if((iPos < 1) || (iPos > iCount))
+    if ((iPos < 1) || (iPos > iCount))
     {
-        cout<<"Invalid position"<<endl;
+        cout << "Invalid position" << endl;
         return;
     }
 
-    if(iPos == 1)
+    if (iPos == 1)
     {
         DeleteFirst();
     }
-    else if(iPos == iCount)
+    else if (iPos == iCount)
     {
         DeleteLast();
     }
-    else 
+    else
     {
         temp1 = First;
 
-        for(i = 1; i < iPos-1; i++)
+        for (i = 1; i < iPos - 1; i++)
         {
-            temp1 = temp1 -> next;
+            temp1 = temp1->next;
         }
 
         temp2 = temp1->next;
@@ -672,7 +672,7 @@ void DoublyLL<T>::DeleteAtPos(int iPos)
         delete temp2;
 
         iCount--;
-    }    
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -698,20 +698,20 @@ struct nodeSC
 template <class T>
 class SinglyCL
 {
-    private:                    
-        struct nodeSC<T> *First;
-        struct nodeSC<T> *Last;
+private:
+    struct nodeSC<T> *First;
+    struct nodeSC<T> *Last;
 
-    public:                    
-        SinglyCL();
-        void InsertFirst(T no);
-        void InsertLast(T no);
-        void InsertAtPos(T no, int ipos);
-        void DeleteFirst();
-        void DeleteLast();
-        void DeleteAtPos(int ipos);
-        void Display();
-        int Count();
+public:
+    SinglyCL();
+    void InsertFirst(T no);
+    void InsertLast(T no);
+    void InsertAtPos(T no, int ipos);
+    void DeleteFirst();
+    void DeleteLast();
+    void DeleteAtPos(int ipos);
+    void Display();
+    int Count();
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -742,20 +742,20 @@ SinglyCL<T>::SinglyCL()
 template <class T>
 void SinglyCL<T>::Display()
 {
-    struct nodeSC<T> * temp = First;
+    struct nodeSC<T> *temp = First;
 
-    if(First == NULL && Last == NULL)
+    if (First == NULL && Last == NULL)
     {
         return;
     }
 
     do
     {
-        cout<<"|"<<temp->data<<"|-> ";
-        temp = temp -> next;
-    }while(temp != First);
+        cout << "|" << temp->data << "|-> ";
+        temp = temp->next;
+    } while (temp != First);
 
-    cout<<endl;
+    cout << endl;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -771,9 +771,9 @@ template <class T>
 int SinglyCL<T>::Count()
 {
     int iCnt = 0;
-    struct nodeSC<T> * temp = First;
+    struct nodeSC<T> *temp = First;
 
-    if(First == NULL && Last == NULL)
+    if (First == NULL && Last == NULL)
     {
         return 0;
     }
@@ -782,7 +782,7 @@ int SinglyCL<T>::Count()
     {
         iCnt++;
         temp = temp->next;
-    }while(temp != First);
+    } while (temp != First);
 
     return iCnt;
 }
@@ -799,24 +799,24 @@ int SinglyCL<T>::Count()
 template <class T>
 void SinglyCL<T>::InsertFirst(T no)
 {
-    struct nodeSC<T> * newn = NULL;
+    struct nodeSC<T> *newn = NULL;
 
     newn = new struct nodeSC<T>;
 
     newn->data = no;
     newn->next = NULL;
 
-    if((First == NULL) && (Last == NULL))
+    if ((First == NULL) && (Last == NULL))
     {
         First = newn;
         Last = newn;
     }
     else
     {
-        newn -> next = First;
+        newn->next = First;
         First = newn;
     }
-    Last -> next = First;
+    Last->next = First;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -831,31 +831,31 @@ void SinglyCL<T>::InsertFirst(T no)
 template <class T>
 void SinglyCL<T>::InsertLast(T no)
 {
-    struct nodeSC<T> * newn = NULL;
+    struct nodeSC<T> *newn = NULL;
 
     newn = new struct nodeSC<T>;
 
     newn->data = no;
     newn->next = NULL;
 
-    if((First == NULL) && (Last == NULL))
+    if ((First == NULL) && (Last == NULL))
     {
         First = newn;
         Last = newn;
     }
-    else 
+    else
     {
-        Last -> next = newn;
+        Last->next = newn;
         Last = newn;
     }
-    Last -> next = First;
+    Last->next = First;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 //
 //  Function Name:    InsertAtPos
 //  Description:      Inserts an element at specific position of the list
-//  Input:            T (generic data type)  
+//  Input:            T (generic data type)
 //                    Integer (Position of element)
 //  Output:           None
 //
@@ -866,38 +866,38 @@ void SinglyCL<T>::InsertAtPos(T no, int ipos)
 {
     int iSize = Count();
 
-    if((ipos < 1) || (ipos > iSize+1))
+    if ((ipos < 1) || (ipos > iSize + 1))
     {
-        cout<<"Invalid position"<<endl;
+        cout << "Invalid position" << endl;
         return;
     }
 
-    if(ipos == 1)
+    if (ipos == 1)
     {
         InsertFirst(no);
     }
-    else if(ipos == iSize + 1)
+    else if (ipos == iSize + 1)
     {
         InsertLast(no);
     }
     else
     {
-        struct nodeSC<T> * newn = NULL;
+        struct nodeSC<T> *newn = NULL;
 
         newn = new struct nodeSC<T>;
 
         newn->data = no;
         newn->next = NULL;
 
-        struct nodeSC<T> * temp = First;
+        struct nodeSC<T> *temp = First;
         int iCnt = 0;
 
-        for(iCnt = 1; iCnt < ipos-1; iCnt++)
+        for (iCnt = 1; iCnt < ipos - 1; iCnt++)
         {
             temp = temp->next;
         }
 
-        newn->next = temp -> next;
+        newn->next = temp->next;
         temp->next = newn;
     }
 }
@@ -914,19 +914,19 @@ void SinglyCL<T>::InsertAtPos(T no, int ipos)
 template <class T>
 void SinglyCL<T>::DeleteFirst()
 {
-    if(First == NULL && Last ==  NULL) 
+    if (First == NULL && Last == NULL)
     {
         return;
     }
-    else if(First == Last)      
+    else if (First == Last)
     {
         delete First;
         First = NULL;
         Last = NULL;
     }
-    else   
+    else
     {
-        First = First -> next;
+        First = First->next;
         delete Last->next;
 
         Last->next = First;
@@ -945,11 +945,11 @@ void SinglyCL<T>::DeleteFirst()
 template <class T>
 void SinglyCL<T>::DeleteLast()
 {
-    if(First == NULL && Last ==  NULL) 
+    if (First == NULL && Last == NULL)
     {
         return;
     }
-    else if(First == Last)       
+    else if (First == Last)
     {
         delete Last;
         First = NULL;
@@ -957,9 +957,9 @@ void SinglyCL<T>::DeleteLast()
     }
     else
     {
-        struct nodeSC<T> * temp = First;
+        struct nodeSC<T> *temp = First;
 
-        while(temp->next != Last)
+        while (temp->next != Last)
         {
             temp = temp->next;
         }
@@ -985,31 +985,31 @@ void SinglyCL<T>::DeleteAtPos(int ipos)
 {
     int iSize = Count();
 
-    if((ipos < 1) || (ipos > iSize))
+    if ((ipos < 1) || (ipos > iSize))
     {
-        cout<<"Invalid position"<<endl;
+        cout << "Invalid position" << endl;
         return;
     }
 
-    if(ipos == 1)
+    if (ipos == 1)
     {
         DeleteFirst();
     }
-    else if(ipos == iSize)
+    else if (ipos == iSize)
     {
         DeleteLast();
     }
     else
     {
-        struct nodeSC<T> * temp1 = First;
+        struct nodeSC<T> *temp1 = First;
         int iCnt = 0;
 
-        for(iCnt = 1; iCnt < ipos-1; iCnt++)
+        for (iCnt = 1; iCnt < ipos - 1; iCnt++)
         {
             temp1 = temp1->next;
         }
 
-        struct nodeSC<T> * temp2 = temp1->next;
+        struct nodeSC<T> *temp2 = temp1->next;
 
         temp1->next = temp2->next;
         delete temp2;
@@ -1040,24 +1040,24 @@ struct nodeDC
 template <class T>
 class DoublyCL
 {
-    private:
-        struct nodeDC<T> * First;
-        struct nodeDC<T> * Last;
-        int iCount;
+private:
+    struct nodeDC<T> *First;
+    struct nodeDC<T> *Last;
+    int iCount;
 
-    public:
-        DoublyCL();
+public:
+    DoublyCL();
 
-        void Display();
-        int Count();
+    void Display();
+    int Count();
 
-        void InsertFirst(T No);
-        void InsertLast(T No);
-        void InsertAtPos(T No, int iPos);
+    void InsertFirst(T No);
+    void InsertLast(T No);
+    void InsertAtPos(T No, int iPos);
 
-        void DeleteFirst();
-        void DeleteLast();
-        void DeleteAtPos(int iPos);
+    void DeleteFirst();
+    void DeleteLast();
+    void DeleteAtPos(int iPos);
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1070,7 +1070,7 @@ class DoublyCL
 /////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
-DoublyCL<T>:: DoublyCL()
+DoublyCL<T>::DoublyCL()
 {
     First = NULL;
     Last = NULL;
@@ -1089,20 +1089,20 @@ DoublyCL<T>:: DoublyCL()
 template <class T>
 void DoublyCL<T>::Display()
 {
-    if(First == NULL && Last == NULL)
+    if (First == NULL && Last == NULL)
     {
-        cout<<"Linked List is empty"<<endl;
+        cout << "Linked List is empty" << endl;
         return;
     }
 
-    cout<<"<=> ";
+    cout << "<=> ";
     do
     {
-        cout<<"| "<<First->data <<"| <=> ";
-        First = First -> next;
-    }while(Last -> next != First);
+        cout << "| " << First->data << "| <=> ";
+        First = First->next;
+    } while (Last->next != First);
 
-    cout<<endl;
+    cout << endl;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1132,7 +1132,7 @@ int DoublyCL<T>::Count()
 template <class T>
 void DoublyCL<T>::InsertFirst(T No)
 {
-    struct nodeDC<T> * newn = NULL;
+    struct nodeDC<T> *newn = NULL;
 
     newn = new nodeDC<T>;
 
@@ -1140,7 +1140,7 @@ void DoublyCL<T>::InsertFirst(T No)
     newn->next = NULL;
     newn->prev = NULL;
 
-    if((First == NULL) && (Last == NULL))
+    if ((First == NULL) && (Last == NULL))
     {
         First = newn;
         Last = newn;
@@ -1151,8 +1151,8 @@ void DoublyCL<T>::InsertFirst(T No)
         First->prev = newn;
         First = newn;
     }
-    Last -> next = First;
-    First -> prev = Last;
+    Last->next = First;
+    First->prev = Last;
 
     iCount++;
 }
@@ -1169,7 +1169,7 @@ void DoublyCL<T>::InsertFirst(T No)
 template <class T>
 void DoublyCL<T>::InsertLast(T No)
 {
-    struct nodeDC<T> * newn = NULL;
+    struct nodeDC<T> *newn = NULL;
 
     newn = new nodeDC<T>;
 
@@ -1177,28 +1177,28 @@ void DoublyCL<T>::InsertLast(T No)
     newn->next = NULL;
     newn->prev = NULL;
 
-    if((First == NULL) && (Last == NULL))
+    if ((First == NULL) && (Last == NULL))
     {
         First = newn;
         Last = newn;
     }
     else
     {
-        Last ->next = newn;
+        Last->next = newn;
         newn->prev = Last;
         Last = newn;
     }
-    Last -> next = First;
-    First -> prev = Last;
+    Last->next = First;
+    First->prev = Last;
 
-    iCount++;    
+    iCount++;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 //
 //  Function Name:    InsertAtPos
 //  Description:      Inserts an element at specific position of the list
-//  Input:            T (generic data type)  
+//  Input:            T (generic data type)
 //                    Integer (Position of element)
 //  Output:           None
 //
@@ -1207,22 +1207,22 @@ void DoublyCL<T>::InsertLast(T No)
 template <class T>
 void DoublyCL<T>::InsertAtPos(T No, int iPos)
 {
-    struct nodeDC<T> * temp = NULL;
-    struct nodeDC<T> * newn = NULL;
+    struct nodeDC<T> *temp = NULL;
+    struct nodeDC<T> *newn = NULL;
 
     int i = 0;
 
-    if(iPos < 1 || iPos > iCount+1)
+    if (iPos < 1 || iPos > iCount + 1)
     {
-        cout<<"Invalid postion"<<endl;
+        cout << "Invalid postion" << endl;
         return;
     }
 
-    if(iPos == 1)
+    if (iPos == 1)
     {
         InsertFirst(No);
     }
-    else if(iPos == iCount+1)
+    else if (iPos == iCount + 1)
     {
         InsertLast(No);
     }
@@ -1236,9 +1236,9 @@ void DoublyCL<T>::InsertAtPos(T No, int iPos)
 
         temp = First;
 
-        for(i = 1; i < iPos -1; i++)
+        for (i = 1; i < iPos - 1; i++)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
 
         newn->next = temp->next;
@@ -1263,22 +1263,22 @@ void DoublyCL<T>::InsertAtPos(T No, int iPos)
 template <class T>
 void DoublyCL<T>::DeleteFirst()
 {
-    if(First == NULL && Last == NULL)  
+    if (First == NULL && Last == NULL)
     {
         return;
     }
-    else if(First == Last)  
+    else if (First == Last)
     {
         delete First;
         First = NULL;
         Last = NULL;
     }
-    else   
+    else
     {
-        First = First -> next;
+        First = First->next;
         delete Last->next;
-        First -> prev = Last;
-        Last -> next = First;
+        First->prev = Last;
+        Last->next = First;
     }
     iCount--;
 }
@@ -1295,25 +1295,25 @@ void DoublyCL<T>::DeleteFirst()
 template <class T>
 void DoublyCL<T>::DeleteLast()
 {
-    if(First == NULL && Last == NULL) 
+    if (First == NULL && Last == NULL)
     {
         return;
     }
-    else if(First == Last)  
+    else if (First == Last)
     {
         delete First;
         First = NULL;
         Last = NULL;
     }
-    else    
+    else
     {
-        Last = Last -> prev;
-        delete First -> prev;
+        Last = Last->prev;
+        delete First->prev;
 
-        Last -> next = First;
-        First -> prev = Last;
+        Last->next = First;
+        First->prev = Last;
     }
-    iCount--;    
+    iCount--;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1328,21 +1328,21 @@ void DoublyCL<T>::DeleteLast()
 template <class T>
 void DoublyCL<T>::DeleteAtPos(int iPos)
 {
-    struct nodeDC<T> * temp = NULL;
+    struct nodeDC<T> *temp = NULL;
 
     int i = 0;
 
-    if(iPos < 1 || iPos > iCount)
+    if (iPos < 1 || iPos > iCount)
     {
-        cout<<"Invalid postion"<<endl;
+        cout << "Invalid postion" << endl;
         return;
     }
 
-    if(iPos == 1)
+    if (iPos == 1)
     {
         DeleteFirst();
     }
-    else if(iPos == iCount)
+    else if (iPos == iCount)
     {
         DeleteLast();
     }
@@ -1350,9 +1350,9 @@ void DoublyCL<T>::DeleteAtPos(int iPos)
     {
         temp = First;
 
-        for(i = 1; i < iPos -1; i++)
+        for (i = 1; i < iPos - 1; i++)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
 
         temp->next = temp->next->next;
@@ -1360,7 +1360,7 @@ void DoublyCL<T>::DeleteAtPos(int iPos)
         temp->next->prev = temp;
 
         iCount--;
-    }    
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1369,7 +1369,7 @@ void DoublyCL<T>::DeleteAtPos(int iPos)
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 struct NodeS
 {
     T data;
@@ -1383,19 +1383,19 @@ struct NodeS
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 class Stack
 {
-    private:
-        struct NodeS<T> *First;
-        int iCount;
+private:
+    struct NodeS<T> *First;
+    int iCount;
 
-    public:
-        Stack();
-        void Push(T);        
-        void Pop();            
-        void Display();
-        int CountNode();
+public:
+    Stack();
+    void Push(T);
+    void Pop();
+    void Display();
+    int CountNode();
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1407,7 +1407,7 @@ class Stack
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 Stack<T>::Stack()
 {
     First = NULL;
@@ -1423,7 +1423,7 @@ Stack<T>::Stack()
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 void Stack<T>::Push(T no)
 {
     struct NodeS<T> *newn = NULL;
@@ -1451,14 +1451,14 @@ void Stack<T>::Pop()
 {
     T no;
 
-    if(First == NULL)
+    if (First == NULL)
     {
-        cout<<"Unable to pop the element as stack is empty"<<endl;
+        cout << "Unable to pop the element as stack is empty" << endl;
         return;
     }
 
     struct NodeS<T> *temp = First;
-    no = First -> data;
+    no = First->data;
     First = First->next;
     delete temp;
 
@@ -1474,17 +1474,17 @@ void Stack<T>::Pop()
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 void Stack<T>::Display()
 {
-    cout<<"Elements from Stack are : "<<endl;
+    cout << "Elements from Stack are : " << endl;
     struct NodeS<T> *temp = First;
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        cout<<temp->data<<" ";
+        cout << temp->data << " ";
         temp = temp->next;
     }
-    cout<<endl;
+    cout << endl;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1496,7 +1496,7 @@ void Stack<T>::Display()
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 int Stack<T>::CountNode()
 {
     return iCount;
@@ -1508,7 +1508,7 @@ int Stack<T>::CountNode()
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 struct nodeQ
 {
     T data;
@@ -1522,19 +1522,19 @@ struct nodeQ
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 class Queue
 {
-    private:
-        struct nodeQ<T> *First;
-        int iCount;
+private:
+    struct nodeQ<T> *First;
+    int iCount;
 
-    public:
-        Queue();
-        void Enqueue(T);
-        void Dequeue();
-        void Display();
-        int CountNode();
+public:
+    Queue();
+    void Enqueue(T);
+    void Dequeue();
+    void Display();
+    int CountNode();
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1546,7 +1546,7 @@ class Queue
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 Queue<T>::Queue()
 {
     First = NULL;
@@ -1562,7 +1562,7 @@ Queue<T>::Queue()
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 void Queue<T>::Enqueue(T no)
 {
     struct nodeQ<T> *newn = NULL;
@@ -1571,16 +1571,16 @@ void Queue<T>::Enqueue(T no)
     newn->data = no;
     newn->next = NULL;
 
-    if(First == NULL)
+    if (First == NULL)
     {
         First = newn;
     }
     else
     {
         struct nodeQ<T> *temp = First;
-        while(temp->next != NULL)
+        while (temp->next != NULL)
         {
-            temp = temp -> next;
+            temp = temp->next;
         }
 
         temp->next = newn;
@@ -1602,14 +1602,14 @@ void Queue<T>::Dequeue()
 {
     T no;
 
-    if(First == NULL)
+    if (First == NULL)
     {
-        cout<<"Unable to remove the element as queue is empty"<<endl;
+        cout << "Unable to remove the element as queue is empty" << endl;
         return;
     }
 
     struct nodeQ<T> *temp = First;
-    no = First -> data;
+    no = First->data;
     First = First->next;
     delete temp;
 
@@ -1625,17 +1625,17 @@ void Queue<T>::Dequeue()
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 void Queue<T>::Display()
 {
-    cout<<"Elements from Queue are : "<<endl;
+    cout << "Elements from Queue are : " << endl;
     struct nodeQ<T> *temp = First;
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        cout<<temp->data<<" ";
+        cout << temp->data << " ";
         temp = temp->next;
     }
-    cout<<endl;
+    cout << endl;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1647,10 +1647,198 @@ void Queue<T>::Display()
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template<class T>
+template <class T>
 int Queue<T>::CountNode()
 {
     return iCount;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  SearchAlgorithms
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+class SearchAlgorithms
+{
+private:
+    T *Arr;
+    int iSize;
+
+public:
+    SearchAlgorithms(int size);  // Constructor to initialize array size
+    ~SearchAlgorithms();         // Destructor to release array memory
+    void Accept();               // Accept array elements
+    void Display();              // Display array elements
+    bool LinearSearch(T);        // Performs Linear Search
+    bool BiDirectionalSearch(T); // Performs Bi-Directional Search
+    bool BinarySearch(T);        // Performs Binary Search
+};
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:    SearchAlgorithms
+//  Description:         Initializes array and its size
+//  Input:               int (Size of array)
+//  Output:              None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+SearchAlgorithms<T>::SearchAlgorithms(int size)
+{
+    this->iSize = size;
+    this->Arr = new T[size];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Destructor Name:     ~SearchAlgorithms
+//  Description:         Releases allocated memory for the array
+//  Input:               None
+//  Output:              None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+SearchAlgorithms<T>::~SearchAlgorithms()
+{
+    delete[] Arr;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Accept
+//  Description:      Accepts the elements for the array
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SearchAlgorithms<T>::Accept()
+{
+    int i = 0;
+
+    cout << "Enter the elements: \n";
+    for (i = 0; i < iSize; i++)
+    {
+        cin >> Arr[i];
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Display
+//  Description:      Displays the elements of the array
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SearchAlgorithms<T>::Display()
+{
+    int i = 0;
+
+    cout << "Array elements are: \n";
+    for (i = 0; i < iSize; i++)
+    {
+        cout << Arr[i] << "\t";
+    }
+    cout << endl;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    LinearSearch
+//  Description:      Performs a linear search to find the element
+//  Input:            T (Element to search)
+//  Output:           bool (True if element found, otherwise false)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool SearchAlgorithms<T>::LinearSearch(T Value)
+{
+    bool flag = false;
+    int i = 0;
+
+    for (i = 0; i < iSize; i++)
+    {
+        if (Arr[i] == Value)
+        {
+            flag = true;
+            break;
+        }
+    }
+    return flag;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    BiDirectionalSearch
+//  Description:      Performs a bidirectional search to find the element
+//  Input:            T (Element to search)
+//  Output:           bool (True if element found, otherwise false)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool SearchAlgorithms<T>::BiDirectionalSearch(T Value)
+{
+    int iStart = 0, iEnd = 0;
+    bool flag = false;
+
+    for (iStart = 0, iEnd = iSize - 1; iStart <= iEnd; iStart++, iEnd--)
+    {
+        if (Arr[iStart] == Value || Arr[iEnd] == Value)
+        {
+            flag = true;
+            break;
+        }
+    }
+    return flag;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    BinarySearch
+//  Description:      Performs binary search to find the element
+//  Input:            T (Element to search)
+//  Output:           bool (True if element found, otherwise false)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool SearchAlgorithms<T>::BinarySearch(T Value)
+{
+    int iStart = 0, iEnd = 0, iMid = 0;
+    bool flag = false;
+
+    iEnd = iSize - 1;
+
+    while (iStart <= iEnd)
+    {
+        iMid = iStart + ((iEnd - iStart) / 2);
+
+        if ((Arr[iMid] == Value) || (Arr[iStart] == Value) || (Arr[iEnd] == Value))
+        {
+            flag = true;
+            break;
+        }
+        else if (Value < Arr[iMid])
+        {
+            iStart = iMid + 1;
+        }
+        else if (Value > Arr[iMid])
+        {
+            iEnd = iMid - 1;
+        }
+    }
+
+    return flag;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
