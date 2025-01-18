@@ -1655,7 +1655,14 @@ int Queue<T>::CountNode()
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//  SearchAlgorithms
+//  Searching Algorithms
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   SearchAlgorithms
+//  Description     :   Implements search algorithms: Linear, Bi-Directional, and Binary Search
 //
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -1847,6 +1854,13 @@ bool SearchAlgorithms<T>::BinarySearch(T Value)
 //
 /////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   SortAlgorithms
+//  Description     :   Implements sorting algorithms: Bubble Sort, Selection Sort, Insertion Sort
+//
+/////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
 class SortAlgorithms
 {
@@ -2029,6 +2043,314 @@ void SortAlgorithms<T>::InsertionSort()
         }
         Arr[j + 1] = selected;
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+// Binary Search Tree
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+struct nodeBST
+{
+    T data;                                // Data of generic type T
+    struct nodeBST<T> *lchild;            // Pointer to left child
+    struct nodeBST<T> *rchild;            // Pointer to right child
+};
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Class Name      :   BinarySearchTree
+//  Description     :   Implements a binary search tree with generic data type
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+class BinarySearchTree
+{
+private:
+    struct nodeBST<T> *Root;              // Pointer to the root node
+
+public:
+    BinarySearchTree();                   // Constructor
+    void Insert(T No);                    // Function to insert an element
+    void Inorder();                       // Function for inorder traversal
+    void Preorder();                      // Function for preorder traversal
+    void Postorder();                     // Function for postorder traversal
+    bool Search(T No);                    // Function to search for an element
+    int CountLeafNodes();                 // Function to count leaf nodes
+    int CountParentNodes();               // Function to count parent nodes
+    int CountAllNodes();                  // Function to count all nodes
+
+private:
+    void Inorder(struct nodeBST<T> *Root);          // Helper for inorder traversal
+    void Preorder(struct nodeBST<T> *Root);         // Helper for preorder traversal
+    void Postorder(struct nodeBST<T> *Root);        // Helper for postorder traversal
+    bool Search(struct nodeBST<T> *Root, T No);     // Helper for searching
+    int CountLeafNodes(struct nodeBST<T> *Root);    // Helper for counting leaf nodes
+    int CountParentNodes(struct nodeBST<T> *Root);  // Helper for counting parent nodes
+    int CountAllNodes(struct nodeBST<T> *Root);     // Helper for counting all nodes
+};
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Constructor Name:  BinarySearchTree
+//  Description:       Initializes an empty binary search tree
+//  Input:             None
+//  Output:            None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+BinarySearchTree<T>::BinarySearchTree()
+{
+    Root = NULL;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Insert
+//  Description:      Inserts an element into the binary search tree
+//  Input:            Element to insert (generic type T)
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void BinarySearchTree<T>::Insert(T No)
+{
+    struct nodeBST<T>* newn = new nodeBST<T>;  // Allocate memory for new node
+
+    newn->data = No;
+    newn->lchild = NULL;
+    newn->rchild = NULL;
+
+    if (Root == NULL)  // If tree is empty
+    {
+        Root = newn;
+    }
+    else  // Traverse the tree to find the correct position
+    {
+        struct nodeBST<T>* temp = Root;
+
+        while (true)
+        {
+            if (temp->data == No)
+            {
+                cout << "Unable to insert node as element is already present\n";
+                delete newn;
+                break;
+            }
+            else if (No > temp->data)  // Navigate to the right subtree
+            {
+                if (temp->rchild == NULL)
+                {
+                    temp->rchild = newn;
+                    break;
+                }
+                temp = temp->rchild;
+            }
+            else  // Navigate to the left subtree
+            {
+                if (temp->lchild == NULL)
+                {
+                    temp->lchild = newn;
+                    break;
+                }
+                temp = temp->lchild;
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Inorder
+//  Description:      Performs inorder traversal of the binary search tree
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void BinarySearchTree<T>::Inorder()
+{
+    Inorder(Root);
+    cout << endl;
+}
+
+template <class T>
+void BinarySearchTree<T>::Inorder(struct nodeBST<T> *Root)
+{
+    if (Root != NULL)
+    {
+        Inorder(Root->lchild);
+        cout << Root->data << " ";
+        Inorder(Root->rchild);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Preorder
+//  Description:      Performs preorder traversal of the binary search tree
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void BinarySearchTree<T>::Preorder()
+{
+    Preorder(Root);
+    cout << endl;
+}
+
+template <class T>
+void BinarySearchTree<T>::Preorder(struct nodeBST<T> *Root)
+{
+    if (Root != NULL)
+    {
+        cout << Root->data << " ";
+        Preorder(Root->lchild);
+        Preorder(Root->rchild);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Postorder
+//  Description:      Performs postorder traversal of the binary search tree
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void BinarySearchTree<T>::Postorder()
+{
+    Postorder(Root);
+    cout << endl;
+}
+
+template <class T>
+void BinarySearchTree<T>::Postorder(struct nodeBST<T> *Root)
+{
+    if (Root != NULL)
+    {
+        Postorder(Root->lchild);
+        Postorder(Root->rchild);
+        cout << Root->data << " ";
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Search
+//  Description:      Searches for a value in the binary search tree
+//  Input:            Element to search (generic type T)
+//  Output:           Boolean (true if found, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool BinarySearchTree<T>::Search(T No)
+{
+    return Search(Root, No);
+}
+
+template <class T>
+bool BinarySearchTree<T>::Search(struct nodeBST<T> *Root, T No)
+{
+    while (Root != NULL)
+    {
+        if (Root->data == No)
+        {
+            return true;
+        }
+        else if (No > Root->data)
+        {
+            Root = Root->rchild;
+        }
+        else
+        {
+            Root = Root->lchild;
+        }
+    }
+    return false;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CountLeafNodes
+//  Description:      Counts the leaf nodes in the binary search tree
+//  Input:            None
+//  Output:           Integer (count of leaf nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int BinarySearchTree<T>::CountLeafNodes()
+{
+    return CountLeafNodes(Root);
+}
+
+template <class T>
+int BinarySearchTree<T>::CountLeafNodes(struct nodeBST<T> *Root)
+{
+    if (Root == NULL)
+        return 0;
+    if (Root->lchild == NULL && Root->rchild == NULL)
+        return 1;
+    return CountLeafNodes(Root->lchild) + CountLeafNodes(Root->rchild);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CountParentNodes
+//  Description:      Counts the parent nodes in the binary search tree
+//  Input:            None
+//  Output:           Integer (count of parent nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int BinarySearchTree<T>::CountParentNodes()
+{
+    return CountParentNodes(Root);
+}
+
+template <class T>
+int BinarySearchTree<T>::CountParentNodes(struct nodeBST<T> *Root)
+{
+    if (Root == NULL)
+        return 0;
+    int count = (Root->lchild != NULL || Root->rchild != NULL) ? 1 : 0;
+    return count + CountParentNodes(Root->lchild) + CountParentNodes(Root->rchild);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CountAllNodes
+//  Description:      Counts all nodes in the binary search tree
+//  Input:            None
+//  Output:           Integer (total count of nodes)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int BinarySearchTree<T>::CountAllNodes()
+{
+    return CountAllNodes(Root);
+}
+
+template <class T>
+int BinarySearchTree<T>::CountAllNodes(struct nodeBST<T> *Root)
+{
+    if (Root == NULL)
+        return 0;
+    return 1 + CountAllNodes(Root->lchild) + CountAllNodes(Root->rchild);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
