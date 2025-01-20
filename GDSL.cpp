@@ -767,6 +767,22 @@ class DoublyLL
         void DeleteFirst();         // Function to delete the first node
         void DeleteLast();          // Function to delete the last node
         void DeleteAtPos(int iPos); // Function to delete a node at a specific position
+
+        // Aggregate Function
+        T Addition();               // Function to calculate sum of all elements
+        int EvenCount();            // Function to count even elements
+        int OddCount();             // Function to count odd elements
+        int Frequency(T No);        // Function to count frequency of an element
+        bool Search(T No);          // Function to search for an element
+        int SearchFirstOccurrence(T No); // Function to find first occurrence of an element
+        int SearchLastOccurrence(T No);  // Function to find last occurrence of an element
+        void SumDigits();           // Function to display sum of digits of each element
+        T FactorsAddition(T iNo);   // Function to calculate sum of factors of a number
+        bool CheckPerfect(T iNo);   // Function to check if a number is perfect
+        void DisplayPerfect();      // Function to display perfect numbers from the list
+        void SumFactors();          // Function to display sum of factors for each element
+        T MiddleElement();          // Function to find middle element (method 1)
+        T MiddleElementX();         // Function to find middle element (method 2)
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1062,6 +1078,385 @@ void DoublyLL<T>::DeleteAtPos(int iPos)
 
         iCount--;                    // Decrement node count
     }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Addition
+//  Description:      Calculates the sum of all elements in the list
+//  Input:            None
+//  Output:           T (sum of elements)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T DoublyLL<T>::Addition()
+{
+    T iSum = 0;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        iSum = iSum + (temp->data);
+        temp = temp->next;
+    }
+
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    EvenCount
+//  Description:      Counts the even numbers in the list
+//  Input:            None
+//  Output:           Integer (count of even numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyLL<T>::EvenCount()
+{
+    int iCnt = 0;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if ((temp->data) % 2 == 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    OddCount
+//  Description:      Counts the odd numbers in the list
+//  Input:            None
+//  Output:           Integer (count of odd numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyLL<T>::OddCount()
+{
+    int iCnt = 0;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if ((temp->data) % 2 != 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Frequency
+//  Description:      Counts the frequency of a specific element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (frequency of element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyLL<T>::Frequency(T No)
+{
+    int iCnt = 0;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Search
+//  Description:      Searches for an element in the list
+//  Input:            T (element to search)
+//  Output:           Boolean (true if found, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool DoublyLL<T>::Search(T No)
+{
+    bool bFlag = false;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            bFlag = true;
+            break;
+        }
+        temp = temp->next;
+    }
+
+    return bFlag;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchFirstOccurrence
+//  Description:      Finds the first occurrence of an element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (position of first occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyLL<T>::SearchFirstOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+            break;
+        }
+        iCount++;
+        temp = temp->next;
+    }
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchLastOccurrence
+//  Description:      Finds the last occurrence of an element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (position of last occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyLL<T>::SearchLastOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+        }
+        iCount++;
+        temp = temp->next;
+    }
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumDigits
+//  Description:      Displays the sum of digits for each element in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void DoublyLL<T>::SumDigits()
+{
+    T iSum = 0;
+    T iNo = 0;
+    int iDigit = 0;
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        iNo = temp->data;
+
+        while (iNo != 0)
+        {
+            iDigit = iNo % 10;
+            iSum = iSum + iDigit;
+            iNo = iNo / 10;
+        }
+        cout << "Sum of digits of " << temp->data << " is: " << iSum << endl;
+        iSum = 0;
+
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    FactorsAddition
+//  Description:      Calculates the sum of factors of a number
+//  Input:            T (number to calculate factors)
+//  Output:           T (sum of factors)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T DoublyLL<T>::FactorsAddition(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CheckPerfect
+//  Description:      Checks if a number is a perfect number
+//  Input:            T (number to check)
+//  Output:           Boolean (true if perfect, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+
+template <class T>
+bool DoublyLL<T>::CheckPerfect(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+
+    if(iSum == iNo)
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DisplayPerfect
+//  Description:      Displays all perfect numbers in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void DoublyLL<T>::DisplayPerfect()
+{
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (CheckPerfect(temp->data) == true)
+        {
+            cout << temp->data << " is a perfect number" << endl;
+        }
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumFactors
+//  Description:      Displays the sum of factors for each element in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void DoublyLL<T>::SumFactors()
+{
+    struct nodeDL<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        cout << "Sum of factors of " << temp->data << " is: " << FactorsAddition(temp->data) << endl;
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElement
+//  Description:      Finds the middle element using the length of the list
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T DoublyLL<T>::MiddleElement()
+{
+    int iMid = 0, i = 0;
+    iMid = iCount / 2;
+    struct nodeDL<T> *temp = First;
+
+    for (i = 1; i <= iMid; i++)
+    {
+        temp = temp->next;
+    }
+
+    return temp->data;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElementX
+//  Description:      Finds the middle element using the two-pointer approach
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T DoublyLL<T>::MiddleElementX()
+{
+    struct nodeDL<T> *fastPtr = First;  // Fast pointer moves two steps at a time
+    struct nodeDL<T> *slowPtr = First;  // Slow pointer moves one step at a time
+
+    while (fastPtr != NULL && fastPtr->next != NULL)
+    {
+        fastPtr = fastPtr->next->next;  // Move fast pointer by two steps
+        slowPtr = slowPtr->next;        // Move slow pointer by one step
+    }
+
+    return slowPtr->data;  // Slow pointer will be at the middle
 }
 
 /////////////////////////////////////////////////////////////////////////////////
