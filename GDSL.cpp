@@ -1489,14 +1489,33 @@ class SinglyCL
     public:
         SinglyCL();                 // Constructor
 
+        void Display();             // Function to display all elements
+        int Count();                // Function to count the number of nodes
+
         void InsertFirst(T no);     // Function to insert at the beginning
         void InsertLast(T no);      // Function to insert at the end
         void InsertAtPos(T no, int ipos);  // Function to insert at a specific position
+
         void DeleteFirst();         // Function to delete the first node
         void DeleteLast();          // Function to delete the last node
         void DeleteAtPos(int ipos); // Function to delete a node at a specific position
-        void Display();             // Function to display all elements
-        int Count();                // Function to count the number of nodes
+
+        // Aggregate functions
+        T Addition();               // Function to calculate sum of all elements
+        int EvenCount();            // Function to count even elements
+        int OddCount();             // Function to count odd elements
+        int Frequency(T No);        // Function to count frequency of an element
+        bool Search(T No);          // Function to search for an element
+        int SearchFirstOccurrence(T No); // Function to find first occurrence of an element
+        int SearchLastOccurrence(T No);  // Function to find last occurrence of an element
+        void SumDigits();           // Function to display sum of digits of each element
+        T FactorsAddition(T iNo);   // Function to calculate sum of factors of a number
+        bool CheckPerfect(T iNo);   // Function to check if a number is perfect
+        void DisplayPerfect();      // Function to display perfect numbers from the list
+        void SumFactors();          // Function to display sum of factors for each element
+        T MiddleElement();          // Function to find middle element (method 1)
+        T MiddleElementX();         // Function to find middle element (method 2)
+
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1798,6 +1817,460 @@ void SinglyCL<T>::DeleteAtPos(int ipos)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Addition
+//  Description:      Calculates the sum of all elements in the singly circular linked list
+//  Input:            None
+//  Output:           T (sum of elements)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T SinglyCL<T>::Addition()
+{
+    T iSum = 0;
+
+    if (First == NULL)  // Check if list is empty
+    {
+        return iSum;  // Return 0 if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        iSum = iSum + temp->data;
+        temp = temp->next;
+    } while (temp != First);
+
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    EvenCount
+//  Description:      Counts the even numbers in the singly circular linked list
+//  Input:            None
+//  Output:           Integer (count of even numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int SinglyCL<T>::EvenCount()
+{
+    int iCnt = 0;
+
+    if (First == NULL)
+    {
+        return iCnt;  // Return 0 if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        if (temp->data % 2 == 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    OddCount
+//  Description:      Counts the odd numbers in the singly circular linked list
+//  Input:            None
+//  Output:           Integer (count of odd numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int SinglyCL<T>::OddCount()
+{
+    int iCnt = 0;
+
+    if (First == NULL)
+    {
+        return iCnt;  // Return 0 if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        if (temp->data % 2 != 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Frequency
+//  Description:      Counts the frequency of a specific element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Integer (frequency of element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int SinglyCL<T>::Frequency(T No)
+{
+    int iCnt = 0;
+
+    if (First == NULL)
+    {
+        return iCnt;  // Return 0 if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Search
+//  Description:      Searches for an element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Boolean (true if found, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool SinglyCL<T>::Search(T No)
+{
+    bool bFlag = false;
+
+    if (First == NULL)
+    {
+        return bFlag;  // Return false if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            bFlag = true;
+            break;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return bFlag;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchFirstOccurrence
+//  Description:      Finds the first occurrence of an element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Integer (position of first occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int SinglyCL<T>::SearchFirstOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+
+    if (First == NULL)
+    {
+        return iPos;  // Return -1 if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+            break;
+        }
+        iCount++;
+        temp = temp->next;
+    } while (temp != First);
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchLastOccurrence
+//  Description:      Finds the last occurrence of an element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Integer (position of last occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int SinglyCL<T>::SearchLastOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+
+    if (First == NULL)
+    {
+        return iPos;  // Return -1 if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+        }
+        iCount++;
+        temp = temp->next;
+    } while (temp != First);
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumDigits
+//  Description:      Displays the sum of digits for each element in the singly circular linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SinglyCL<T>::SumDigits()
+{
+    T iSum = 0;
+    T iNo = 0;
+    int iDigit = 0;
+
+    if (First == NULL)
+    {
+        return;  // Return if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        iNo = temp->data;
+
+        while (iNo != 0)
+        {
+            iDigit = iNo % 10;
+            iSum = iSum + iDigit;
+            iNo = iNo / 10;
+        }
+        cout << "Sum of digits of " << temp->data << " is: " << iSum << endl;
+        iSum = 0;
+
+        temp = temp->next;
+    } while (temp != First);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    FactorsAddition
+//  Description:      Calculates the sum of factors of a number
+//  Input:            T (number to calculate factors)
+//  Output:           T (sum of factors)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T SinglyCL<T>::FactorsAddition(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CheckPerfect
+//  Description:      Checks if a number is a perfect number
+//  Input:            T (number to check)
+//  Output:           Boolean (true if perfect, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool SinglyCL<T>::CheckPerfect(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+
+    if(iSum == iNo)
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DisplayPerfect
+//  Description:      Displays all perfect numbers in the singly circular linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SinglyCL<T>::DisplayPerfect()
+{
+    if (First == NULL)
+    {
+        return;  // Return if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        if (CheckPerfect(temp->data) == true)
+        {
+            cout << temp->data << " is a perfect number" << endl;
+        }
+        temp = temp->next;
+    } while (temp != First);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumFactors
+//  Description:      Displays the sum of factors for each element in the singly circular linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void SinglyCL<T>::SumFactors()
+{
+    if (First == NULL)
+    {
+        return;  // Return if the list is empty
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    do
+    {
+        cout << "Sum of factors of " << temp->data << " is: " << FactorsAddition(temp->data) << endl;
+        temp = temp->next;
+    } while (temp != First);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElement
+//  Description:      Finds the middle element using the length of the singly circular linked list
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T SinglyCL<T>::MiddleElement()
+{
+    int iMid = Count() / 2;
+    int i = 0;
+
+    if (First == NULL)
+    {
+        cout << "Linked list is empty " << endl;
+        return;
+    }
+
+    struct nodeSC<T> *temp = First;
+
+    for (i = 1; i <= iMid; i++)
+    {
+        temp = temp->next;
+    }
+
+    return temp->data;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElementX
+//  Description:      Finds the middle element using the two-pointer approach
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T SinglyCL<T>::MiddleElementX()
+{
+    struct nodeSC<T> *fastPtr = First;  // Fast pointer moves two steps at a time
+    struct nodeSC<T> *slowPtr = First;  // Slow pointer moves one step at a time
+
+    if (First == NULL)
+    {
+        cout << "Linked list is empty " << endl;
+        return;
+    }
+
+    do
+    {
+        if (fastPtr->next != First && fastPtr->next->next != First)
+        {
+            fastPtr = fastPtr->next->next;  // Move fast pointer by two steps
+            slowPtr = slowPtr->next;        // Move slow pointer by one step
+        }
+        else
+        {
+            break;  // Break when fastPtr reaches or is about to reach the end
+        }
+    } while (fastPtr != First && fastPtr->next != First);
+
+    return slowPtr->data;  // Slow pointer will be at the middle
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -1841,6 +2314,22 @@ public:
     void DeleteFirst();                 // Function to delete the first element
     void DeleteLast();                  // Function to delete the last element
     void DeleteAtPos(int iPos);         // Function to delete an element at a specific position
+
+    // Aggregate functions
+    T Addition();               // Function to calculate sum of all elements
+    int EvenCount();            // Function to count even elements
+    int OddCount();             // Function to count odd elements
+    int Frequency(T No);        // Function to count frequency of an element
+    bool Search(T No);          // Function to search for an element
+    int SearchFirstOccurrence(T No); // Function to find first occurrence of an element
+    int SearchLastOccurrence(T No);  // Function to find last occurrence of an element
+    void SumDigits();           // Function to display sum of digits of each element
+    T FactorsAddition(T iNo);   // Function to calculate sum of factors of a number
+    bool CheckPerfect(T iNo);   // Function to check if a number is perfect
+    void DisplayPerfect();      // Function to display perfect numbers from the list
+    void SumFactors();          // Function to display sum of factors for each element
+    T MiddleElement();          // Function to find middle element (method 1)
+    T MiddleElementX();         // Function to find middle element (method 2)
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2148,6 +2637,462 @@ void DoublyCL<T>::DeleteAtPos(int iPos)
 
 /////////////////////////////////////////////////////////////////////////////////
 //
+//  Function Name:    Addition
+//  Description:      Calculates the sum of all elements in the singly circular linked list
+//  Input:            None
+//  Output:           T (sum of elements)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+
+template <class T>
+T DoublyCL<T>::Addition()
+{
+    T iSum = 0;
+
+    if (First == NULL)  // Check if list is empty
+    {
+        return iSum;  // Return 0 if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        iSum = iSum + temp->data;
+        temp = temp->next;
+    } while (temp != First);
+
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    EvenCount
+//  Description:      Counts the even numbers in the singly circular linked list
+//  Input:            None
+//  Output:           Integer (count of even numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyCL<T>::EvenCount()
+{
+    int iCnt = 0;
+
+    if (First == NULL)
+    {
+        return iCnt;  // Return 0 if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        if (temp->data % 2 == 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    OddCount
+//  Description:      Counts the odd numbers in the singly circular linked list
+//  Input:            None
+//  Output:           Integer (count of odd numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyCL<T>::OddCount()
+{
+    int iCnt = 0;
+
+    if (First == NULL)
+    {
+        return iCnt;  // Return 0 if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        if (temp->data % 2 != 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Frequency
+//  Description:      Counts the frequency of a specific element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Integer (frequency of element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyCL<T>::Frequency(T No)
+{
+    int iCnt = 0;
+
+    if (First == NULL)
+    {
+        return iCnt;  // Return 0 if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Search
+//  Description:      Searches for an element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Boolean (true if found, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool DoublyCL<T>::Search(T No)
+{
+    bool bFlag = false;
+
+    if (First == NULL)
+    {
+        return bFlag;  // Return false if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            bFlag = true;
+            break;
+        }
+        temp = temp->next;
+    } while (temp != First);
+
+    return bFlag;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchFirstOccurrence
+//  Description:      Finds the first occurrence of an element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Integer (position of first occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyCL<T>::SearchFirstOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+
+    if (First == NULL)
+    {
+        return iPos;  // Return -1 if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+            break;
+        }
+        iCount++;
+        temp = temp->next;
+    } while (temp != First);
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchLastOccurrence
+//  Description:      Finds the last occurrence of an element in the singly circular linked list
+//  Input:            T (element to search)
+//  Output:           Integer (position of last occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int DoublyCL<T>::SearchLastOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+
+    if (First == NULL)
+    {
+        return iPos;  // Return -1 if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+        }
+        iCount++;
+        temp = temp->next;
+    } while (temp != First);
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumDigits
+//  Description:      Displays the sum of digits for each element in the singly circular linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void DoublyCL<T>::SumDigits()
+{
+    T iSum = 0;
+    T iNo = 0;
+    int iDigit = 0;
+
+    if (First == NULL)
+    {
+        return;  // Return if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        iNo = temp->data;
+
+        while (iNo != 0)
+        {
+            iDigit = iNo % 10;
+            iSum = iSum + iDigit;
+            iNo = iNo / 10;
+        }
+        cout << "Sum of digits of " << temp->data << " is: " << iSum << endl;
+        iSum = 0;
+
+        temp = temp->next;
+    } while (temp != First);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    FactorsAddition
+//  Description:      Calculates the sum of factors of a number
+//  Input:            T (number to calculate factors)
+//  Output:           T (sum of factors)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T DoublyCL<T>::FactorsAddition(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CheckPerfect
+//  Description:      Checks if a number is a perfect number
+//  Input:            T (number to check)
+//  Output:           Boolean (true if perfect, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool DoublyCL<T>::CheckPerfect(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+
+    if(iSum == iNo)
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DisplayPerfect
+//  Description:      Displays all perfect numbers in the singly circular linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void DoublyCL<T>::DisplayPerfect()
+{
+    if (First == NULL)
+    {
+        return;  // Return if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        if (CheckPerfect(temp->data) == true)
+        {
+            cout << temp->data << " is a perfect number" << endl;
+        }
+        temp = temp->next;
+    } while (temp != First);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumFactors
+//  Description:      Displays the sum of factors for each element in the singly circular linked list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void DoublyCL<T>::SumFactors()
+{
+    if (First == NULL)
+    {
+        return;  // Return if the list is empty
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    do
+    {
+        cout << "Sum of factors of " << temp->data << " is: " << FactorsAddition(temp->data) << endl;
+        temp = temp->next;
+    } while (temp != First);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElement
+//  Description:      Finds the middle element using the length of the singly circular linked list
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T DoublyCL<T>::MiddleElement()
+{
+    int iMid = Count() / 2;
+    int i = 0;
+
+    if (First == NULL)
+    {
+        cout << "Linked list is empty " << endl;
+        return;
+    }
+
+    struct nodeDC<T> *temp = First;
+
+    for (i = 1; i <= iMid; i++)
+    {
+        temp = temp->next;
+    }
+
+    return temp->data;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElementX
+//  Description:      Finds the middle element using the two-pointer approach
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T DoublyCL<T>::MiddleElementX()
+{
+    struct nodeDC<T> *fastPtr = First;  // Fast pointer moves two steps at a time
+    struct nodeDC<T> *slowPtr = First;  // Slow pointer moves one step at a time
+
+    if (First == NULL)
+    {
+        cout << "Linked list is empty " << endl;
+        return;
+    }
+
+    do
+    {
+        if (fastPtr->next != First && fastPtr->next->next != First)
+        {
+            fastPtr = fastPtr->next->next;  // Move fast pointer by two steps
+            slowPtr = slowPtr->next;        // Move slow pointer by one step
+        }
+        else
+        {
+            break;  // Break when fastPtr reaches or is about to reach the end
+        }
+    } while (fastPtr != First && fastPtr->next != First);
+
+    return slowPtr->data;  // Slow pointer will be at the middle
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
 //  STACK
 //
 /////////////////////////////////////////////////////////////////////////////////
@@ -2169,16 +3114,32 @@ struct NodeS
 template <class T>
 class Stack
 {
-private:
-    struct NodeS<T> *First;  // Pointer to the first/top node of the stack
-    int iCount;              // Counter for the number of elements in the stack
+    private:
+        struct NodeS<T> *First;  // Pointer to the first/top node of the stack
+        int iCount;              // Counter for the number of elements in the stack
 
-public:
-    Stack();               // Constructor
-    void Push(T);          // Function to insert an element into the stack
-    void Pop();            // Function to remove an element from the stack
-    void Display();        // Function to display all elements in the stack
-    int CountNode();       // Function to count the number of nodes in the stack
+    public:
+        Stack();               // Constructor
+        void Push(T);          // Function to insert an element into the stack
+        void Pop();            // Function to remove an element from the stack
+        void Display();        // Function to display all elements in the stack
+        int CountNode();       // Function to count the number of nodes in the stack
+
+        // Aggregate functions
+        T Addition();               // Function to calculate sum of all elements
+        int EvenCount();            // Function to count even elements
+        int OddCount();             // Function to count odd elements
+        int Frequency(T No);        // Function to count frequency of an element
+        bool Search(T No);          // Function to search for an element
+        int SearchFirstOccurrence(T No); // Function to find first occurrence of an element
+        int SearchLastOccurrence(T No);  // Function to find last occurrence of an element
+        void SumDigits();           // Function to display sum of digits of each element
+        T FactorsAddition(T iNo);   // Function to calculate sum of factors of a number
+        bool CheckPerfect(T iNo);   // Function to check if a number is perfect
+        void DisplayPerfect();      // Function to display perfect numbers from the list
+        void SumFactors();          // Function to display sum of factors for each element
+        T MiddleElement();          // Function to find middle element (method 1)
+        T MiddleElementX();         // Function to find middle element (method 2)
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2288,6 +3249,383 @@ int Stack<T>::CountNode()
 
 /////////////////////////////////////////////////////////////////////////////////
 //
+//  Function Name:    Addition
+//  Description:      Calculates the sum of all elements in the list
+//  Input:            None
+//  Output:           T (sum of elements)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Stack<T>::Addition()
+{
+    T iSum = 0;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        iSum = iSum + (temp->data);
+        temp = temp->next;
+    }
+
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    EvenCount
+//  Description:      Counts the even numbers in the list
+//  Input:            None
+//  Output:           Integer (count of even numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Stack<T>::EvenCount()
+{
+    int iCnt = 0;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if ((temp->data) % 2 == 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    OddCount
+//  Description:      Counts the odd numbers in the list
+//  Input:            None
+//  Output:           Integer (count of odd numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Stack<T>::OddCount()
+{
+    int iCnt = 0;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if ((temp->data) % 2 != 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Frequency
+//  Description:      Counts the frequency of a specific element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (frequency of element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Stack<T>::Frequency(T No)
+{
+    int iCnt = 0;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Search
+//  Description:      Searches for an element in the list
+//  Input:            T (element to search)
+//  Output:           Boolean (true if found, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool Stack<T>::Search(T No)
+{
+    bool bFlag = false;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            bFlag = true;
+            break;
+        }
+        temp = temp->next;
+    }
+
+    return bFlag;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchFirstOccurrence
+//  Description:      Finds the first occurrence of an element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (position of first occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Stack<T>::SearchFirstOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+            break;
+        }
+        iCount++;
+        temp = temp->next;
+    }
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchLastOccurrence
+//  Description:      Finds the last occurrence of an element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (position of last occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Stack<T>::SearchLastOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+        }
+        iCount++;
+        temp = temp->next;
+    }
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumDigits
+//  Description:      Displays the sum of digits for each element in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void Stack<T>::SumDigits()
+{
+    T iSum = 0;
+    T iNo = 0;
+    int iDigit = 0;
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        iNo = temp->data;
+
+        while (iNo != 0)
+        {
+            iDigit = iNo % 10;
+            iSum = iSum + iDigit;
+            iNo = iNo / 10;
+        }
+        cout << "Sum of digits of " << temp->data << " is: " << iSum << endl;
+        iSum = 0;
+
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    FactorsAddition
+//  Description:      Calculates the sum of factors of a number
+//  Input:            T (number to calculate factors)
+//  Output:           T (sum of factors)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Stack<T>::FactorsAddition(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CheckPerfect
+//  Description:      Checks if a number is a perfect number
+//  Input:            T (number to check)
+//  Output:           Boolean (true if perfect, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool Stack<T>::CheckPerfect(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for(i = 1; i <= iNo/2; i++)
+    {
+        if(iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+
+    if(iSum == iNo)
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }    
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DisplayPerfect
+//  Description:      Displays all perfect numbers in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void Stack<T>::DisplayPerfect()
+{
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (CheckPerfect(temp->data) == true)
+        {
+            cout << temp->data << " is a perfect number" << endl;
+        }
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumFactors
+//  Description:      Displays the sum of factors for each element in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void Stack<T>::SumFactors()
+{
+    struct NodeS<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        cout << "Sum of factors of " << temp->data << " is: " << FactorsAddition(temp->data) << endl;
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElement
+//  Description:      Finds the middle element using the length of the list
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Stack<T>::MiddleElement()
+{
+    int iMid = 0, i = 0;
+    iMid = iCount / 2;
+    struct NodeS<T> *temp = First;
+
+    for (i = 1; i <= iMid; i++)
+    {
+        temp = temp->next;
+    }
+
+    return temp->data;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElementX
+//  Description:      Finds the middle element using the two-pointer approach
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Stack<T>::MiddleElementX()
+{
+    struct NodeS<T> *fastPtr = First;  // Fast pointer moves two steps at a time
+    struct NodeS<T> *slowPtr = First;  // Slow pointer moves one step at a time
+
+    while (fastPtr != NULL && fastPtr->next != NULL)
+    {
+        fastPtr = fastPtr->next->next;  // Move fast pointer by two steps
+        slowPtr = slowPtr->next;        // Move slow pointer by one step
+    }
+
+    return slowPtr->data;  // Slow pointer will be at the middle
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
 //  QUEUE
 //
 /////////////////////////////////////////////////////////////////////////////////
@@ -2309,16 +3647,32 @@ struct nodeQ
 template <class T>
 class Queue
 {
-private:
-    struct nodeQ<T> *First;  // Pointer to the first/front node of the queue
-    int iCount;              // Counter for the number of elements in the queue
+    private:
+        struct nodeQ<T> *First;  // Pointer to the first/front node of the queue
+        int iCount;              // Counter for the number of elements in the queue
 
-public:
-    Queue();                 // Constructor to initialize an empty queue
-    void Enqueue(T);         // Function to insert an element into the queue
-    void Dequeue();          // Function to remove an element from the queue
-    void Display();          // Function to display all elements in the queue
-    int CountNode();         // Function to count the number of nodes in the queue
+    public:
+        Queue();                 // Constructor to initialize an empty queue
+        void Enqueue(T);         // Function to insert an element into the queue
+        void Dequeue();          // Function to remove an element from the queue
+        void Display();          // Function to display all elements in the queue
+        int CountNode();         // Function to count the number of nodes in the queue
+
+        // Aggregate functions
+        T Addition();               // Function to calculate sum of all elements
+        int EvenCount();            // Function to count even elements
+        int OddCount();             // Function to count odd elements
+        int Frequency(T No);        // Function to count frequency of an element
+        bool Search(T No);          // Function to search for an element
+        int SearchFirstOccurrence(T No); // Function to find first occurrence of an element
+        int SearchLastOccurrence(T No);  // Function to find last occurrence of an element
+        void SumDigits();           // Function to display sum of digits of each element
+        T FactorsAddition(T iNo);   // Function to calculate sum of factors of a number
+        bool CheckPerfect(T iNo);   // Function to check if a number is perfect
+        void DisplayPerfect();      // Function to display perfect numbers from the list
+        void SumFactors();          // Function to display sum of factors for each element
+        T MiddleElement();          // Function to find middle element (method 1)
+        T MiddleElementX();         // Function to find middle element (method 2)
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2438,6 +3792,382 @@ int Queue<T>::CountNode()
     return iCount;                  // Return the count of nodes in the queue
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Addition
+//  Description:      Calculates the sum of all elements in the list
+//  Input:            None
+//  Output:           T (sum of elements)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Queue<T>::Addition()
+{
+    T iSum = 0;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        iSum = iSum + (temp->data);
+        temp = temp->next;
+    }
+
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    EvenCount
+//  Description:      Counts the even numbers in the list
+//  Input:            None
+//  Output:           Integer (count of even numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Queue<T>::EvenCount()
+{
+    int iCnt = 0;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if ((temp->data) % 2 == 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    OddCount
+//  Description:      Counts the odd numbers in the list
+//  Input:            None
+//  Output:           Integer (count of odd numbers)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Queue<T>::OddCount()
+{
+    int iCnt = 0;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if ((temp->data) % 2 != 0)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Frequency
+//  Description:      Counts the frequency of a specific element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (frequency of element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Queue<T>::Frequency(T No)
+{
+    int iCnt = 0;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iCnt++;
+        }
+        temp = temp->next;
+    }
+
+    return iCnt;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    Search
+//  Description:      Searches for an element in the list
+//  Input:            T (element to search)
+//  Output:           Boolean (true if found, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool Queue<T>::Search(T No)
+{
+    bool bFlag = false;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            bFlag = true;
+            break;
+        }
+        temp = temp->next;
+    }
+
+    return bFlag;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchFirstOccurrence
+//  Description:      Finds the first occurrence of an element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (position of first occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Queue<T>::SearchFirstOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+            break;
+        }
+        iCount++;
+        temp = temp->next;
+    }
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SearchLastOccurrence
+//  Description:      Finds the last occurrence of an element in the list
+//  Input:            T (element to search)
+//  Output:           Integer (position of last occurrence)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+int Queue<T>::SearchLastOccurrence(T No)
+{
+    int iCount = 1;
+    int iPos = -1;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (temp->data == No)
+        {
+            iPos = iCount;
+        }
+        iCount++;
+        temp = temp->next;
+    }
+
+    return iPos;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumDigits
+//  Description:      Displays the sum of digits for each element in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void Queue<T>::SumDigits()
+{
+    T iSum = 0;
+    T iNo = 0;
+    int iDigit = 0;
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        iNo = temp->data;
+
+        while (iNo != 0)
+        {
+            iDigit = iNo % 10;
+            iSum = iSum + iDigit;
+            iNo = iNo / 10;
+        }
+        cout << "Sum of digits of " << temp->data << " is: " << iSum << endl;
+        iSum = 0;
+
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    FactorsAddition
+//  Description:      Calculates the sum of factors of a number
+//  Input:            T (number to calculate factors)
+//  Output:           T (sum of factors)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Queue<T>::FactorsAddition(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for (i = 1; i <= iNo / 2; i++)
+    {
+        if (iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+    return iSum;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    CheckPerfect
+//  Description:      Checks if a number is a perfect number
+//  Input:            T (number to check)
+//  Output:           Boolean (true if perfect, false otherwise)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+bool Queue<T>::CheckPerfect(T iNo)
+{
+    T iSum = 0;
+    T i = 0;
+
+    for(i = 1; i <= iNo/2; i++)
+    {
+        if(iNo % i == 0)
+        {
+            iSum = iSum + i;
+        }
+    }
+
+    if(iSum == iNo)
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }    
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    DisplayPerfect
+//  Description:      Displays all perfect numbers in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void Queue<T>::DisplayPerfect()
+{
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        if (CheckPerfect(temp->data) == true)
+        {
+            cout << temp->data << " is a perfect number" << endl;
+        }
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    SumFactors
+//  Description:      Displays the sum of factors for each element in the list
+//  Input:            None
+//  Output:           None
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+void Queue<T>::SumFactors()
+{
+    struct nodeQ<T> *temp = First;
+
+    while (temp != NULL)
+    {
+        cout << "Sum of factors of " << temp->data << " is: " << FactorsAddition(temp->data) << endl;
+        temp = temp->next;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElement
+//  Description:      Finds the middle element using the length of the list
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Queue<T>::MiddleElement()
+{
+    int iMid = 0, i = 0;
+    iMid = iCount / 2;
+    struct nodeQ<T> *temp = First;
+
+    for (i = 1; i <= iMid; i++)
+    {
+        temp = temp->next;
+    }
+
+    return temp->data;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name:    MiddleElementX
+//  Description:      Finds the middle element using the two-pointer approach
+//  Input:            None
+//  Output:           T (middle element)
+//
+/////////////////////////////////////////////////////////////////////////////////
+
+template <class T>
+T Queue<T>::MiddleElementX()
+{
+    struct nodeQ<T> *fastPtr = First;  // Fast pointer moves two steps at a time
+    struct nodeQ<T> *slowPtr = First;  // Slow pointer moves one step at a time
+
+    while (fastPtr != NULL && fastPtr->next != NULL)
+    {
+        fastPtr = fastPtr->next->next;  // Move fast pointer by two steps
+        slowPtr = slowPtr->next;        // Move slow pointer by one step
+    }
+
+    return slowPtr->data;  // Slow pointer will be at the middle
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 //
