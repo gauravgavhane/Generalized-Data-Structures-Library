@@ -1,54 +1,156 @@
-
 # Generalized Data Structures Library (GDSL)
 
-This project provides a comprehensive library for various generalized data structures implemented in C++.
-The library is designed to offer flexibility by utilizing templates, allowing you to work with different data types.
+The Generalized Data Structures Library (GDSL) is a comprehensive C++ library designed to provide flexible and efficient implementations of various data structures, search algorithms, and sorting algorithms. The library is written using templates, enabling it to work seamlessly with different data types.
+
+---
 
 ## Features
 
+### 1. Data Structures
 - **Singly Linear Linked List**
-  - Insert elements at the beginning, end, or specific positions.
-  - Delete elements from the beginning, end, or specific positions.
-  - Display all elements and count nodes.
-
+  - Basic operations: Insert, Delete, Display, and Count.
+  - **Aggregate Functions**:
+    - Sum of elements, count of even/odd elements.
+    - Frequency and search of specific elements.
+    - Sum of digits, sum of factors, perfect number check.
+    - Find first/last occurrence and middle element.
 - **Doubly Linear Linked List**
-  - Bi-directional linked list with insert, delete, display, and count operations.
-
+  - Basic operations: Insert, Delete, Display, and Count.
 - **Singly Circular Linked List**
-  - Circular linked list implementation with support for insert, delete, display, and count operations.
-
+  - Basic operations: Insert, Delete, Display, and Count.
+  - **Aggregate Functions**:
+    - Sum of elements, count of even/odd elements.
+    - Frequency and search of specific elements.
+    - Sum of digits, sum of factors, perfect number check.
+    - Find first/last occurrence and middle element.
 - **Doubly Circular Linked List**
-  - Bi-directional circular linked list with robust manipulation methods.
-
+  - Basic operations: Insert, Delete, Display, and Count.
 - **Stack**
-  - Last In First Out (LIFO) implementation with push, pop, display, and count functionalities.
-
+  - Basic operations: Push, Pop, Display, and Count.
+    - **Aggregate Functions**:
+    - Sum of elements, count of even/odd elements.
+    - Frequency and search of specific elements.
+    - Sum of digits, sum of factors, perfect number check.
+    - Find first/last occurrence and middle element.
 - **Queue**
-  - First In First Out (FIFO) implementation with enqueue, dequeue, display, and count functionalities.
+  - Basic operations: Enqueue, Dequeue, Display, and Count.
+  - **Aggregate Functions**:
+    - Sum of elements, count of even/odd elements.
+    - Frequency and search of specific elements.
+    - Sum of digits, sum of factors, perfect number check.
+    - Find first/last occurrence and middle element.
+
+### 2. Search Algorithms
+- **Linear Search**
+- **Bi-Directional Search**
+- **Binary Search**
+
+### 3. Sort Algorithms
+- **Bubble Sort**
+- **Selection Sort**
+- **Insertion Sort**
+
+### 4. Binary Search Tree
+- **Basic Operations**: Insert, Search, Count Nodes.
+- **Traversals**: Inorder, Preorder, Postorder.
+- **Node Types**: Leaf nodes, Parent nodes, Total nodes.
+
+---
 
 ## Installation
 
-Clone the repository and include the `GDSL.cpp` file in your C++ project.
+Follow these steps to set up the GDSL library in your project:
 
-```bash
-git clone https://github.com/your-username/GDSL.git
-```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/GDSL.git
+   ```
 
-## Usage
+2. **Include the GDSL source file**:
+   Add the `GDSL.cpp` file to your project directory.
 
-Include the `GDSL.cpp` file and create objects of the required data structure in your main function. Here's an example of using a Singly Linear Linked List:
+3. **Include GDSL in your code**:
+   Add the following line to your C++ source file:
+   ```cpp
+   #include "GDSL.cpp"
+   ```
+
+---
+
+## Usage Guide
+
+### Step 1: Creating Objects
+To use the data structures, create objects of the respective classes:
 
 ```cpp
 #include "GDSL.cpp"
 
 int main() {
     SinglyLL<int> list;
-    list.InsertFirst(10);
-    list.InsertLast(20);
-    list.Display();
+    Stack<float> stack;
+    Queue<double> queue;
+    BinarySearchTree<int> bst;
+
     return 0;
 }
 ```
+
+### Step 2: Using Basic Operations
+Each data structure comes with basic operations. Here's an example:
+
+#### Singly Linear Linked List:
+```cpp
+SinglyLL<int> list;
+list.InsertFirst(10);
+list.InsertLast(20);
+list.Display();
+cout << "Count: " << list.Count() << endl;
+```
+
+#### Queue:
+```cpp
+Queue<int> queue;
+queue.Enqueue(10);
+queue.Enqueue(20);
+queue.Display();
+cout << "Sum: " << queue.Addition() << endl;
+```
+
+#### Binary Search Tree:
+```cpp
+BinarySearchTree<int> bst;
+bst.Insert(50);
+bst.Insert(30);
+bst.Insert(70);
+bst.Inorder();
+bst.Preorder();
+bst.Postorder();
+cout << "Leaf Nodes: " << bst.CountLeafNodes() << endl;
+```
+
+### Step 3: Using Searching Algorithms
+The `SearchAlgorithms` class provides Linear, Bi-Directional, and Binary Search functionalities:
+
+```cpp
+SearchAlgorithms<int> search(5);
+search.Accept();
+search.Display();
+if (search.LinearSearch(10)) {
+    cout << "Element found!" << endl;
+}
+```
+
+### Step 4: Using Sorting Algorithms
+The `SortAlgorithms` class provides Bubble, Selection, and Insertion Sort:
+
+```cpp
+SortAlgorithms<int> sort(5);
+sort.Accept();
+sort.BubbleSort();
+sort.Display();
+```
+
+---
 
 ## License
 
@@ -56,4 +158,11 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-Contributions and suggestions are welcome. Feel free to fork and submit pull requests!
+## Contributions
+
+Contributions are welcome! Feel free to fork the repository and submit pull requests with your changes.
+
+---
+
+For more information, contact **Gaurav Suresh Gavhane** at [gauravgavhane1702@gmail.com](mailto:gauravgavhane1702@gmail.com).
+
