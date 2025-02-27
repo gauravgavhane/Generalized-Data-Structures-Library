@@ -16,8 +16,8 @@ using namespace std;
 template <class T>
 struct nodeSL
 {
-    T data;                     // Data of generic type T
-    struct nodeSL *next;        // Pointer to the next node
+    T data;                     
+    struct nodeSL *next;        
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -31,11 +31,11 @@ template <class T>
 class SinglyLL
 {
     private:
-        struct nodeSL<T> *First;    // Pointer to the first node in the list
-        int iCount;                 // Count of nodes in the list
+        struct nodeSL<T> *First;    
+        int iCount;                 
 
     public:
-        SinglyLL();                 // Constructor
+        SinglyLL();                 
 
         void Display();             // Function to display all elements
         int Count();                // Function to count the number of nodes
@@ -77,8 +77,8 @@ class SinglyLL
 template <class T>
 SinglyLL<T>::SinglyLL()
 {
-    First = NULL;               // Initialize First pointer to NULL
-    iCount = 0;                 // Initialize node count to 0
+    First = NULL;               
+    iCount = 0;                 
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -93,14 +93,14 @@ SinglyLL<T>::SinglyLL()
 template <class T>
 void SinglyLL<T>::Display()
 {
-    struct nodeSL<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeSL<T> *temp = First;  
 
     while (temp != NULL)             // Traverse until the end of the list
     {
-        cout << "| " << temp->data << "|-> ";  // Print current node's data
-        temp = temp->next;           // Move to the next node
+        cout << "| " << temp->data << "|-> ";  
+        temp = temp->next;           
     }
-    cout << "NULL" << endl;          // End of list
+    cout << "NULL" << endl;          
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ void SinglyLL<T>::Display()
 template <class T>
 int SinglyLL<T>::Count()
 {
-    return iCount;                   // Return the count of nodes
+    return iCount;                   
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -130,22 +130,22 @@ int SinglyLL<T>::Count()
 template <class T>
 void SinglyLL<T>::InsertFirst(T No)
 {
-    struct nodeSL<T> *newn = NULL;   // Pointer to new node
+    struct nodeSL<T> *newn = NULL;   
 
-    newn = new nodeSL<T>;            // Allocate memory for new node
-    newn->data = No;                 // Initialize data
-    newn->next = NULL;               // Initialize next pointer to NULL
+    newn = new nodeSL<T>;            
+    newn->data = No;                 
+    newn->next = NULL;               
 
     if (First == NULL)               // Check if list is empty
     {
-        First = newn;                // Set new node as first node
+        First = newn;                
     }
     else
     {
-        newn->next = First;          // Link new node to first node
-        First = newn;                // Update First to new node
+        newn->next = First;          
+        First = newn;                
     }
-    iCount++;                        // Increment node count
+    iCount++;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -160,16 +160,16 @@ void SinglyLL<T>::InsertFirst(T No)
 template <class T>
 void SinglyLL<T>::InsertLast(T No)
 {
-    struct nodeSL<T> *newn = NULL;   // Pointer to new node
-    struct nodeSL<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeSL<T> *newn = NULL;   
+    struct nodeSL<T> *temp = First;  
 
-    newn = new nodeSL<T>;            // Allocate memory for new node
-    newn->data = No;                 // Initialize data
-    newn->next = NULL;               // Initialize next pointer to NULL
+    newn = new nodeSL<T>;            
+    newn->data = No;                 
+    newn->next = NULL;               
 
     if (First == NULL)               // Check if list is empty
     {
-        First = newn;                // Set new node as first node
+        First = newn;                
     }
     else
     {
@@ -177,9 +177,9 @@ void SinglyLL<T>::InsertLast(T No)
         {
             temp = temp->next;
         }
-        temp->next = newn;           // Link last node to new node
+        temp->next = newn;           
     }
-    iCount++;                        // Increment node count
+    iCount++;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -195,9 +195,9 @@ void SinglyLL<T>::InsertLast(T No)
 template <class T>
 void SinglyLL<T>::InsertAtPos(T No, int iPos)
 {
-    struct nodeSL<T> *newn = NULL;   // Pointer to new node
+    struct nodeSL<T> *newn = NULL;   
     int i = 0;
-    struct nodeSL<T> *temp;          // Temporary pointer for traversal
+    struct nodeSL<T> *temp;          
 
     if ((iPos < 1) || (iPos > iCount + 1))  // Validate position
     {
@@ -215,20 +215,20 @@ void SinglyLL<T>::InsertAtPos(T No, int iPos)
     }
     else
     {
-        temp = First;                // Initialize temp pointer
+        temp = First;                
 
-        newn = new nodeSL<T>;        // Allocate memory for new node
-        newn->data = No;             // Initialize data
-        newn->next = NULL;           // Initialize next pointer to NULL
+        newn = new nodeSL<T>;        
+        newn->data = No;             
+        newn->next = NULL;           
 
         for (i = 1; i < iPos - 1; i++)  // Traverse to (iPos-1)th node
         {
             temp = temp->next;
         }
 
-        newn->next = temp->next;     // Link new node to next node
-        temp->next = newn;           // Link (iPos-1)th node to new node
-        iCount++;                    // Increment node count
+        newn->next = temp->next;     
+        temp->next = newn;           
+        iCount++;                    
     }
 }
 
@@ -244,7 +244,7 @@ void SinglyLL<T>::InsertAtPos(T No, int iPos)
 template <class T>
 void SinglyLL<T>::DeleteFirst()
 {
-    struct nodeSL<T> *temp = First;  // Temporary pointer to first node
+    struct nodeSL<T> *temp = First;  // 
 
     if (First == NULL)               // Check if list is empty
     {
@@ -253,15 +253,15 @@ void SinglyLL<T>::DeleteFirst()
     }
     else if (First->next == NULL)    // Check if only one node
     {
-        delete First;                // Deallocate memory of first node
-        First = NULL;                // Set First to NULL
+        delete First;                
+        First = NULL;                
     }
     else
     {
-        First = First->next;         // Move First to next node
-        delete temp;                 // Deallocate memory of old first node
+        First = First->next;         
+        delete temp;                 
     }
-    iCount--;                        // Decrement node count
+    iCount--;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -276,7 +276,7 @@ void SinglyLL<T>::DeleteFirst()
 template <class T>
 void SinglyLL<T>::DeleteLast()
 {
-    struct nodeSL<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeSL<T> *temp = First;  
 
     if (First == NULL)               // Check if list is empty
     {
@@ -285,8 +285,8 @@ void SinglyLL<T>::DeleteLast()
     }
     else if (First->next == NULL)    // Check if only one node
     {
-        delete First;                // Deallocate memory of first node
-        First = NULL;                // Set First to NULL
+        delete First;                
+        First = NULL;                
     }
     else
     {
@@ -294,10 +294,10 @@ void SinglyLL<T>::DeleteLast()
         {
             temp = temp->next;
         }
-        delete temp->next;           // Deallocate memory of last node
-        temp->next = NULL;           // Set next of second last node to NULL
+        delete temp->next;           
+        temp->next = NULL;           
     }
-    iCount--;                        // Decrement node count
+    iCount--;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -313,7 +313,7 @@ template <class T>
 void SinglyLL<T>::DeleteAtPos(int iPos)
 {
     int i = 0;
-    struct nodeSL<T> *temp1;         // Temporary pointer for traversal
+    struct nodeSL<T> *temp1;         
     struct nodeSL<T> *temp2;         // Pointer to node to be deleted
 
     if ((iPos < 1) || (iPos > iCount))  // Validate position
@@ -332,7 +332,7 @@ void SinglyLL<T>::DeleteAtPos(int iPos)
     }
     else
     {
-        temp1 = First;               // Initialize temp1 pointer
+        temp1 = First;               
 
         for (i = 1; i < iPos - 1; i++)  // Traverse to (iPos-1)th node
         {
@@ -341,10 +341,10 @@ void SinglyLL<T>::DeleteAtPos(int iPos)
 
         temp2 = temp1->next;         // Node to be deleted
 
-        temp1->next = temp2->next;   // Link (iPos-1)th node to (iPos+1)th node
-        delete temp2;                // Deallocate memory of node to be deleted
+        temp1->next = temp2->next;   
+        delete temp2;                
 
-        iCount--;                    // Decrement node count
+        iCount--;                    
     }
 }
 
@@ -714,8 +714,8 @@ T SinglyLL<T>::MiddleElement()
 template <class T>
 T SinglyLL<T>::MiddleElementX()
 {
-    struct nodeSL<T> *fastPtr = First;  // Fast pointer moves two steps at a time
-    struct nodeSL<T> *slowPtr = First;  // Slow pointer moves one step at a time
+    struct nodeSL<T> *fastPtr = First;  
+    struct nodeSL<T> *slowPtr = First;  
 
     while (fastPtr != NULL && fastPtr->next != NULL)
     {
@@ -735,9 +735,9 @@ T SinglyLL<T>::MiddleElementX()
 template <class T>
 struct nodeDL
 {
-    T data;                     // Data of generic type T
-    struct nodeDL *next;        // Pointer to the next node
-    struct nodeDL *prev;        // Pointer to the previous node
+    T data;                     
+    struct nodeDL *next;        
+    struct nodeDL *prev;        
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -751,11 +751,11 @@ template <class T>
 class DoublyLL
 {
     private:
-        struct nodeDL<T> *First;    // Pointer to the first node in the list
-        int iCount;                 // Count of nodes in the list
+        struct nodeDL<T> *First;    
+        int iCount;                 
 
     public:
-        DoublyLL();                 // Constructor
+        DoublyLL();                 
 
         void Display();             // Function to display all elements
         int Count();                // Function to count the number of nodes
@@ -797,8 +797,8 @@ class DoublyLL
 template <class T>
 DoublyLL<T>::DoublyLL()
 {
-    First = NULL;               // Initialize First pointer to NULL
-    iCount = 0;                 // Initialize node count to 0
+    First = NULL;               
+    iCount = 0;                 
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -813,14 +813,14 @@ DoublyLL<T>::DoublyLL()
 template <class T>
 void DoublyLL<T>::Display()
 {
-    struct nodeDL<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeDL<T> *temp = First;  
 
     while (temp != NULL)             // Traverse until the end of the list
     {
-        cout << "| " << temp->data << " |<=> ";  // Print current node's data
-        temp = temp->next;           // Move to the next node
+        cout << "| " << temp->data << " |<=> ";  
+        temp = temp->next;           
     }
-    cout << "NULL" << endl;          // End of list
+    cout << "NULL" << endl;          
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -835,7 +835,7 @@ void DoublyLL<T>::Display()
 template <class T>
 int DoublyLL<T>::Count()
 {
-    return iCount;                   // Return the count of nodes
+    return iCount;                   
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -850,24 +850,24 @@ int DoublyLL<T>::Count()
 template <class T>
 void DoublyLL<T>::InsertFirst(T No)
 {
-    struct nodeDL<T> *newn = NULL;   // Pointer to new node
+    struct nodeDL<T> *newn = NULL;   
 
-    newn = new nodeDL<T>;            // Allocate memory for new node
-    newn->data = No;                 // Initialize data
-    newn->next = NULL;               // Initialize next pointer to NULL
-    newn->prev = NULL;               // Initialize prev pointer to NULL
+    newn = new nodeDL<T>;            
+    newn->data = No;                 
+    newn->next = NULL;               
+    newn->prev = NULL;               
 
     if (First == NULL)               // Check if list is empty
     {
-        First = newn;                // Set new node as first node
+        First = newn;                
     }
     else
     {
-        newn->next = First;          // Link new node to first node
-        First->prev = newn;          // Link first node's prev to new node
-        First = newn;                // Update First to new node
+        newn->next = First;          
+        First->prev = newn;          
+        First = newn;                
     }
-    iCount++;                        // Increment node count
+    iCount++;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -882,17 +882,17 @@ void DoublyLL<T>::InsertFirst(T No)
 template <class T>
 void DoublyLL<T>::InsertLast(T No)
 {
-    struct nodeDL<T> *newn = NULL;   // Pointer to new node
-    struct nodeDL<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeDL<T> *newn = NULL;   
+    struct nodeDL<T> *temp = First;  
 
-    newn = new nodeDL<T>;            // Allocate memory for new node
-    newn->data = No;                 // Initialize data
-    newn->next = NULL;               // Initialize next pointer to NULL
-    newn->prev = NULL;               // Initialize prev pointer to NULL
+    newn = new nodeDL<T>;            
+    newn->data = No;                 
+    newn->next = NULL;               
+    newn->prev = NULL;               
 
     if (First == NULL)               // Check if list is empty
     {
-        First = newn;                // Set new node as first node
+        First = newn;                
     }
     else
     {
@@ -900,10 +900,10 @@ void DoublyLL<T>::InsertLast(T No)
         {
             temp = temp->next;
         }
-        temp->next = newn;           // Link last node to new node
-        newn->prev = temp;           // Link new node's prev to last node
+        temp->next = newn;           
+        newn->prev = temp;           
     }
-    iCount++;                        // Increment node count
+    iCount++;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -919,9 +919,9 @@ void DoublyLL<T>::InsertLast(T No)
 template <class T>
 void DoublyLL<T>::InsertAtPos(T No, int iPos)
 {
-    struct nodeDL<T> *newn = NULL;   // Pointer to new node
+    struct nodeDL<T> *newn = NULL;   
     int i = 0;
-    struct nodeDL<T> *temp;          // Temporary pointer for traversal
+    struct nodeDL<T> *temp;          
 
     if ((iPos < 1) || (iPos > iCount + 1))  // Validate position
     {
@@ -939,24 +939,24 @@ void DoublyLL<T>::InsertAtPos(T No, int iPos)
     }
     else
     {
-        temp = First;                // Initialize temp pointer
+        temp = First;                
 
-        newn = new nodeDL<T>;        // Allocate memory for new node
-        newn->data = No;             // Initialize data
-        newn->next = NULL;           // Initialize next pointer to NULL
-        newn->prev = NULL;           // Initialize prev pointer to NULL
+        newn = new nodeDL<T>;        
+        newn->data = No;             
+        newn->next = NULL;           
+        newn->prev = NULL;           
 
         for (i = 1; i < iPos - 1; i++)  // Traverse to (iPos-1)th node
         {
             temp = temp->next;
         }
 
-        newn->next = temp->next;     // Link new node to next node
-        newn->prev = temp;           // Link new node to current node
-        temp->next->prev = newn;     // Link next node's prev to new node
-        temp->next = newn;           // Link current node to new node
+        newn->next = temp->next;     
+        newn->prev = temp;           
+        temp->next->prev = newn;     
+        temp->next = newn;           
 
-        iCount++;                    // Increment node count
+        iCount++;                    
     }
 }
 
@@ -979,16 +979,16 @@ void DoublyLL<T>::DeleteFirst()
     }
     else if (First->next == NULL)    // Check if only one node
     {
-        delete First;                // Deallocate memory of first node
-        First = NULL;                // Set First to NULL
+        delete First;                
+        First = NULL;                
     }
     else
     {
-        First = First->next;         // Move First to next node
-        delete First->prev;          // Deallocate memory of old first node
-        First->prev = NULL;          // Set prev of new first node to NULL
+        First = First->next;         
+        delete First->prev;          
+        First->prev = NULL;          
     }
-    iCount--;                        // Decrement node count
+    iCount--;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1003,7 +1003,7 @@ void DoublyLL<T>::DeleteFirst()
 template <class T>
 void DoublyLL<T>::DeleteLast()
 {
-    struct nodeDL<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeDL<T> *temp = First;  
 
     if (First == NULL)               // Check if list is empty
     {
@@ -1012,8 +1012,8 @@ void DoublyLL<T>::DeleteLast()
     }
     else if (First->next == NULL)    // Check if only one node
     {
-        delete First;                // Deallocate memory of first node
-        First = NULL;                // Set First to NULL
+        delete First;                
+        First = NULL;                
     }
     else
     {
@@ -1021,10 +1021,10 @@ void DoublyLL<T>::DeleteLast()
         {
             temp = temp->next;
         }
-        delete temp->next;           // Deallocate memory of last node
-        temp->next = NULL;           // Set next of second last node to NULL
+        delete temp->next;           
+        temp->next = NULL;           
     }
-    iCount--;                        // Decrement node count
+    iCount--;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1040,7 +1040,7 @@ template <class T>
 void DoublyLL<T>::DeleteAtPos(int iPos)
 {
     int i = 0;
-    struct nodeDL<T> *temp1;         // Temporary pointer for traversal
+    struct nodeDL<T> *temp1;         
     struct nodeDL<T> *temp2;         // Pointer to node to be deleted
 
     if ((iPos < 1) || (iPos > iCount))  // Validate position
@@ -1059,7 +1059,7 @@ void DoublyLL<T>::DeleteAtPos(int iPos)
     }
     else
     {
-        temp1 = First;               // Initialize temp1 pointer
+        temp1 = First;               
 
         for (i = 1; i < iPos - 1; i++)  // Traverse to (iPos-1)th node
         {
@@ -1067,16 +1067,16 @@ void DoublyLL<T>::DeleteAtPos(int iPos)
         }
 
         temp2 = temp1->next;         // Node to be deleted
-        temp1->next = temp2->next;   // Link (iPos-1)th node to (iPos+1)th node
+        temp1->next = temp2->next;   
 
         if (temp2->next != NULL)     // Check if temp2 is not the last node
         {
-            temp2->next->prev = temp1; // Link (iPos+1)th node's prev to (iPos-1)th node
+            temp2->next->prev = temp1; 
         }
 
-        delete temp2;                // Deallocate memory of node to be deleted
+        delete temp2;                
 
-        iCount--;                    // Decrement node count
+        iCount--;                    
     }
 }
 
@@ -1447,8 +1447,8 @@ T DoublyLL<T>::MiddleElement()
 template <class T>
 T DoublyLL<T>::MiddleElementX()
 {
-    struct nodeDL<T> *fastPtr = First;  // Fast pointer moves two steps at a time
-    struct nodeDL<T> *slowPtr = First;  // Slow pointer moves one step at a time
+    struct nodeDL<T> *fastPtr = First;  
+    struct nodeDL<T> *slowPtr = First;  
 
     while (fastPtr != NULL && fastPtr->next != NULL)
     {
@@ -1468,8 +1468,8 @@ T DoublyLL<T>::MiddleElementX()
 template <class T>
 struct nodeSC
 {
-    T data;                     // Data of generic type T
-    struct nodeSC *next;        // Pointer to the next node
+    T data;                     
+    struct nodeSC *next;        
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1483,11 +1483,11 @@ template <class T>
 class SinglyCL
 {
     private:
-        struct nodeSC<T> *First;    // Pointer to the first node in the list
-        struct nodeSC<T> *Last;     // Pointer to the last node in the list
+        struct nodeSC<T> *First;    
+        struct nodeSC<T> *Last;     
 
     public:
-        SinglyCL();                 // Constructor
+        SinglyCL();                 
 
         void Display();             // Function to display all elements
         int Count();                // Function to count the number of nodes
@@ -1530,8 +1530,8 @@ class SinglyCL
 template <class T>
 SinglyCL<T>::SinglyCL()
 {
-    First = NULL;               // Initialize First pointer to NULL
-    Last = NULL;                // Initialize Last pointer to NULL
+    First = NULL;               
+    Last = NULL;                
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1546,7 +1546,7 @@ SinglyCL<T>::SinglyCL()
 template <class T>
 void SinglyCL<T>::Display()
 {
-    struct nodeSC<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeSC<T> *temp = First;  
 
     if (First == NULL && Last == NULL)  // Check if list is empty
     {
@@ -1555,11 +1555,11 @@ void SinglyCL<T>::Display()
 
     do
     {
-        cout << "|" << temp->data << "|-> ";  // Print current node's data
-        temp = temp->next;                   // Move to the next node
+        cout << "|" << temp->data << "|-> ";  
+        temp = temp->next;                   
     } while (temp != First);                 // Continue until loop back to First
 
-    cout << endl;                            // End of list
+    cout << endl;                            
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1575,7 +1575,7 @@ template <class T>
 int SinglyCL<T>::Count()
 {
     int iCnt = 0;
-    struct nodeSC<T> *temp = First;  // Temporary pointer for traversal
+    struct nodeSC<T> *temp = First;  
 
     if (First == NULL && Last == NULL)  // Check if list is empty
     {
@@ -1584,11 +1584,11 @@ int SinglyCL<T>::Count()
 
     do
     {
-        iCnt++;                         // Increment node count
-        temp = temp->next;              // Move to the next node
+        iCnt++;                         
+        temp = temp->next;              
     } while (temp != First);            // Continue until loop back to First
 
-    return iCnt;                        // Return the count of nodes
+    return iCnt;                        
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1603,23 +1603,23 @@ int SinglyCL<T>::Count()
 template <class T>
 void SinglyCL<T>::InsertFirst(T no)
 {
-    struct nodeSC<T> *newn = NULL;   // Pointer to new node
+    struct nodeSC<T> *newn = NULL;   
 
-    newn = new struct nodeSC<T>;     // Allocate memory for new node
-    newn->data = no;                 // Initialize data
-    newn->next = NULL;               // Initialize next pointer to NULL
+    newn = new struct nodeSC<T>;     
+    newn->data = no;                 
+    newn->next = NULL;               
 
     if ((First == NULL) && (Last == NULL))  // Check if list is empty
     {
-        First = newn;                // Set new node as first node
-        Last = newn;                 // Set new node as last node
+        First = newn;                
+        Last = newn;                 
     }
     else
     {
-        newn->next = First;          // Link new node to first node
-        First = newn;                // Update First to new node
+        newn->next = First;          
+        First = newn;                
     }
-    Last->next = First;              // Make list circular by linking Last to First
+    Last->next = First;              
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1634,23 +1634,23 @@ void SinglyCL<T>::InsertFirst(T no)
 template <class T>
 void SinglyCL<T>::InsertLast(T no)
 {
-    struct nodeSC<T> *newn = NULL;   // Pointer to new node
+    struct nodeSC<T> *newn = NULL;   
 
-    newn = new struct nodeSC<T>;     // Allocate memory for new node
-    newn->data = no;                 // Initialize data
-    newn->next = NULL;               // Initialize next pointer to NULL
+    newn = new struct nodeSC<T>;     
+    newn->data = no;                 
+    newn->next = NULL;               
 
     if ((First == NULL) && (Last == NULL))  // Check if list is empty
     {
-        First = newn;                // Set new node as first node
-        Last = newn;                 // Set new node as last node
+        First = newn;                
+        Last = newn;                 
     }
     else
     {
-        Last->next = newn;           // Link last node to new node
-        Last = newn;                 // Update Last to new node
+        Last->next = newn;           
+        Last = newn;                 
     }
-    Last->next = First;              // Make list circular by linking Last to First
+    Last->next = First;              
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1684,22 +1684,22 @@ void SinglyCL<T>::InsertAtPos(T no, int ipos)
     }
     else
     {
-        struct nodeSC<T> *newn = NULL;   // Pointer to new node
+        struct nodeSC<T> *newn = NULL;   
 
-        newn = new struct nodeSC<T>;     // Allocate memory for new node
-        newn->data = no;                 // Initialize data
-        newn->next = NULL;               // Initialize next pointer to NULL
+        newn = new struct nodeSC<T>;     
+        newn->data = no;                 
+        newn->next = NULL;               
 
-        struct nodeSC<T> *temp = First;  // Temporary pointer for traversal
-        int iCnt = 0;                    // Separate declaration of iCnt
+        struct nodeSC<T> *temp = First;  
+        int iCnt = 0;                    
 
         for (iCnt = 1; iCnt < ipos - 1; iCnt++)  // Traverse to (ipos-1)th node
         {
             temp = temp->next;
         }
 
-        newn->next = temp->next;         // Link new node to next node
-        temp->next = newn;               // Link (ipos-1)th node to new node
+        newn->next = temp->next;         
+        temp->next = newn;               
     }
 }
 
@@ -1721,16 +1721,16 @@ void SinglyCL<T>::DeleteFirst()
     }
     else if (First == Last)             // Check if only one node
     {
-        delete First;                   // Deallocate memory of first node
-        First = NULL;                   // Set First to NULL
+        delete First;                   
+        First = NULL;                   
         Last = NULL;                    // Set Last to NULL
     }
     else
     {
-        First = First->next;            // Move First to next node
-        delete Last->next;              // Deallocate memory of old first node
+        First = First->next;            
+        delete Last->next;              
 
-        Last->next = First;             // Link Last to new First
+        Last->next = First;             
     }
 }
 
@@ -1752,23 +1752,23 @@ void SinglyCL<T>::DeleteLast()
     }
     else if (First == Last)             // Check if only one node
     {
-        delete Last;                    // Deallocate memory of last node
-        First = NULL;                   // Set First to NULL
+        delete Last;                    
+        First = NULL;                   
         Last = NULL;                    // Set Last to NULL
     }
     else
     {
-        struct nodeSC<T> *temp = First;  // Temporary pointer for traversal
+        struct nodeSC<T> *temp = First;  
 
         while (temp->next != Last)       // Traverse to second last node
         {
             temp = temp->next;
         }
 
-        delete Last;                    // Deallocate memory of last node
-        Last = temp;                    // Update Last to second last node
+        delete Last;                    
+        Last = temp;                    
 
-        Last->next = First;             // Link Last to First
+        Last->next = First;             
     }
 }
 
@@ -1802,8 +1802,8 @@ void SinglyCL<T>::DeleteAtPos(int ipos)
     }
     else
     {
-        struct nodeSC<T> *temp1 = First;  // Temporary pointer for traversal
-        int iCnt = 0;                    // Separate declaration of iCnt
+        struct nodeSC<T> *temp1 = First;  
+        int iCnt = 0;                    
 
         for (iCnt = 1; iCnt < ipos - 1; iCnt++)  // Traverse to (ipos-1)th node
         {
@@ -1812,8 +1812,8 @@ void SinglyCL<T>::DeleteAtPos(int ipos)
 
         struct nodeSC<T> *temp2 = temp1->next;  // Pointer to node to be deleted
 
-        temp1->next = temp2->next;              // Link (ipos-1)th node to (ipos+1)th node
-        delete temp2;                           // Deallocate memory of node to be deleted
+        temp1->next = temp2->next;              
+        delete temp2;                           
     }
 }
 
@@ -1833,7 +1833,7 @@ T SinglyCL<T>::Addition()
 
     if (First == NULL)  // Check if list is empty
     {
-        return iSum;  // Return 0 if the list is empty
+        return iSum;  
     }
 
     struct nodeSC<T> *temp = First;
@@ -1863,7 +1863,7 @@ int SinglyCL<T>::EvenCount()
 
     if (First == NULL)
     {
-        return iCnt;  // Return 0 if the list is empty
+        return iCnt;  
     }
 
     struct nodeSC<T> *temp = First;
@@ -1896,7 +1896,7 @@ int SinglyCL<T>::OddCount()
 
     if (First == NULL)
     {
-        return iCnt;  // Return 0 if the list is empty
+        return iCnt;  
     }
 
     struct nodeSC<T> *temp = First;
@@ -1929,7 +1929,7 @@ int SinglyCL<T>::Frequency(T No)
 
     if (First == NULL)
     {
-        return iCnt;  // Return 0 if the list is empty
+        return iCnt;  
     }
 
     struct nodeSC<T> *temp = First;
@@ -1962,7 +1962,7 @@ bool SinglyCL<T>::Search(T No)
 
     if (First == NULL)
     {
-        return bFlag;  // Return false if the list is empty
+        return bFlag;  
     }
 
     struct nodeSC<T> *temp = First;
@@ -1997,7 +1997,7 @@ int SinglyCL<T>::SearchFirstOccurrence(T No)
 
     if (First == NULL)
     {
-        return iPos;  // Return -1 if the list is empty
+        return iPos;  
     }
 
     struct nodeSC<T> *temp = First;
@@ -2033,7 +2033,7 @@ int SinglyCL<T>::SearchLastOccurrence(T No)
 
     if (First == NULL)
     {
-        return iPos;  // Return -1 if the list is empty
+        return iPos;  
     }
 
     struct nodeSC<T> *temp = First;
@@ -2247,8 +2247,8 @@ T SinglyCL<T>::MiddleElement()
 template <class T>
 T SinglyCL<T>::MiddleElementX()
 {
-    struct nodeSC<T> *fastPtr = First;  // Fast pointer moves two steps at a time
-    struct nodeSC<T> *slowPtr = First;  // Slow pointer moves one step at a time
+    struct nodeSC<T> *fastPtr = First;  
+    struct nodeSC<T> *slowPtr = First;  
 
     if (First == NULL)
     {
@@ -2282,8 +2282,8 @@ template <class T>
 struct nodeDC
 {
     T data;                              // Generic data of the node
-    struct nodeDC *next;                // Pointer to the next node
-    struct nodeDC *prev;                // Pointer to the previous node
+    struct nodeDC *next;                
+    struct nodeDC *prev;                
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2302,7 +2302,7 @@ private:
     int iCount;                         // Counter to keep track of the number of nodes
 
 public:
-    DoublyCL();                         // Constructor
+    DoublyCL();                         
 
     void Display();                     // Function to display all elements in the list
     int Count();                        // Function to count the total number of nodes
@@ -2344,9 +2344,9 @@ public:
 template <class T>
 DoublyCL<T>::DoublyCL()
 {
-    First = NULL;                        // Initialize the First pointer to NULL
-    Last = NULL;                         // Initialize the Last pointer to NULL
-    iCount = 0;                          // Initialize the node counter to 0
+    First = NULL;                        
+    Last = NULL;                         
+    iCount = 0;                          
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2371,7 +2371,7 @@ void DoublyCL<T>::Display()
     do
     {
         cout << "| " << First->data << "| <=> ";
-        First = First->next;            // Traverse to the next node
+        First = First->next;            
     } while (Last->next != First);      // Stop when we loop back to the first node
 
     cout << endl;
@@ -2389,7 +2389,7 @@ void DoublyCL<T>::Display()
 template <class T>
 int DoublyCL<T>::Count()
 {
-    return iCount;                       // Return the current node count
+    return iCount;                       
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2406,9 +2406,9 @@ void DoublyCL<T>::InsertFirst(T No)
 {
     struct nodeDC<T> *newn = NULL;
 
-    newn = new nodeDC<T>;                // Allocate memory for the new node
+    newn = new nodeDC<T>;                
 
-    newn->data = No;                     // Set the data of the new node
+    newn->data = No;                     
     newn->next = NULL;
     newn->prev = NULL;
 
@@ -2423,10 +2423,10 @@ void DoublyCL<T>::InsertFirst(T No)
         First->prev = newn;
         First = newn;
     }
-    Last->next = First;                  // Update the circular connection
+    Last->next = First;                  
     First->prev = Last;
 
-    iCount++;                            // Increment the node count
+    iCount++;                            
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2443,9 +2443,9 @@ void DoublyCL<T>::InsertLast(T No)
 {
     struct nodeDC<T> *newn = NULL;
 
-    newn = new nodeDC<T>;                // Allocate memory for the new node
+    newn = new nodeDC<T>;                
 
-    newn->data = No;                     // Set the data of the new node
+    newn->data = No;                     
     newn->next = NULL;
     newn->prev = NULL;
 
@@ -2460,10 +2460,10 @@ void DoublyCL<T>::InsertLast(T No)
         newn->prev = Last;
         Last = newn;
     }
-    Last->next = First;                  // Update the circular connection
+    Last->next = First;                  
     First->prev = Last;
 
-    iCount++;                            // Increment the node count
+    iCount++;                            
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2500,7 +2500,7 @@ void DoublyCL<T>::InsertAtPos(T No, int iPos)
     }
     else                                 // Insert at a specific position
     {
-        newn = new nodeDC<T>;            // Allocate memory for the new node
+        newn = new nodeDC<T>;            
 
         newn->data = No;
         newn->next = NULL;
@@ -2519,7 +2519,7 @@ void DoublyCL<T>::InsertAtPos(T No, int iPos)
         temp->next = newn;
         newn->prev = temp;
 
-        iCount++;                        // Increment the node count
+        iCount++;                        
     }
 }
 
@@ -2552,7 +2552,7 @@ void DoublyCL<T>::DeleteFirst()
         First->prev = Last;
         Last->next = First;
     }
-    iCount--;                            // Decrement the node count
+    iCount--;                            
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2585,7 +2585,7 @@ void DoublyCL<T>::DeleteLast()
         Last->next = First;
         First->prev = Last;
     }
-    iCount--;                            // Decrement the node count
+    iCount--;                            
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2631,7 +2631,7 @@ void DoublyCL<T>::DeleteAtPos(int iPos)
         delete temp->next->prev;
         temp->next->prev = temp;
 
-        iCount--;                        // Decrement the node count
+        iCount--;                        
     }
 }
 
@@ -2652,7 +2652,7 @@ T DoublyCL<T>::Addition()
 
     if (First == NULL)  // Check if list is empty
     {
-        return iSum;  // Return 0 if the list is empty
+        return iSum;  
     }
 
     struct nodeDC<T> *temp = First;
@@ -2682,7 +2682,7 @@ int DoublyCL<T>::EvenCount()
 
     if (First == NULL)
     {
-        return iCnt;  // Return 0 if the list is empty
+        return iCnt;  
     }
 
     struct nodeDC<T> *temp = First;
@@ -2715,7 +2715,7 @@ int DoublyCL<T>::OddCount()
 
     if (First == NULL)
     {
-        return iCnt;  // Return 0 if the list is empty
+        return iCnt;  
     }
 
     struct nodeDC<T> *temp = First;
@@ -2748,7 +2748,7 @@ int DoublyCL<T>::Frequency(T No)
 
     if (First == NULL)
     {
-        return iCnt;  // Return 0 if the list is empty
+        return iCnt;  
     }
 
     struct nodeDC<T> *temp = First;
@@ -2781,7 +2781,7 @@ bool DoublyCL<T>::Search(T No)
 
     if (First == NULL)
     {
-        return bFlag;  // Return false if the list is empty
+        return bFlag;  
     }
 
     struct nodeDC<T> *temp = First;
@@ -2816,7 +2816,7 @@ int DoublyCL<T>::SearchFirstOccurrence(T No)
 
     if (First == NULL)
     {
-        return iPos;  // Return -1 if the list is empty
+        return iPos;  
     }
 
     struct nodeDC<T> *temp = First;
@@ -2852,7 +2852,7 @@ int DoublyCL<T>::SearchLastOccurrence(T No)
 
     if (First == NULL)
     {
-        return iPos;  // Return -1 if the list is empty
+        return iPos;  
     }
 
     struct nodeDC<T> *temp = First;
@@ -3066,8 +3066,8 @@ T DoublyCL<T>::MiddleElement()
 template <class T>
 T DoublyCL<T>::MiddleElementX()
 {
-    struct nodeDC<T> *fastPtr = First;  // Fast pointer moves two steps at a time
-    struct nodeDC<T> *slowPtr = First;  // Slow pointer moves one step at a time
+    struct nodeDC<T> *fastPtr = First;  
+    struct nodeDC<T> *slowPtr = First;  
 
     if (First == NULL)
     {
@@ -3101,7 +3101,7 @@ template <class T>
 struct NodeS
 {
     T data;               // Stores the data of generic type T
-    struct NodeS *next;   // Pointer to the next node in the stack
+    struct NodeS *next;    in the stack
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3119,7 +3119,7 @@ class Stack
         int iCount;              // Counter for the number of elements in the stack
 
     public:
-        Stack();               // Constructor
+        Stack();               
         void Push(T);          // Function to insert an element into the stack
         void Pop();            // Function to remove an element from the stack
         void Display();        // Function to display all elements in the stack
@@ -3154,8 +3154,8 @@ class Stack
 template <class T>
 Stack<T>::Stack()
 {
-    First = NULL;          // Initialize the stack to be empty
-    iCount = 0;            // Set the count of nodes to 0
+    First = NULL;         
+    iCount = 0;            
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3170,15 +3170,15 @@ Stack<T>::Stack()
 template <class T>
 void Stack<T>::Push(T no)
 {
-    struct NodeS<T> *newn = NULL;   // Pointer to create a new node
-    newn = new NodeS<T>;           // Allocate memory for the new node
+    struct NodeS<T> *newn = NULL;   
+    newn = new NodeS<T>;           
 
-    newn->data = no;               // Set the data of the new node
-    newn->next = NULL;             // Initialize the next pointer of the new node to NULL
+    newn->data = no;               
+    newn->next = NULL;             
 
-    newn->next = First;            // Link the new node to the top of the stack
-    First = newn;                  // Update the top of the stack to the new node
-    iCount++;                      // Increment the count of nodes
+    newn->next = First;            
+    First = newn;                  
+    iCount++;                      
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3193,7 +3193,7 @@ void Stack<T>::Push(T no)
 template <class T>
 void Stack<T>::Pop()
 {
-    T no;                         // Variable to store the data of the node being removed
+    T no;                         
 
     if (First == NULL)            // Check if the stack is empty
     {
@@ -3201,12 +3201,12 @@ void Stack<T>::Pop()
         return;
     }
 
-    struct NodeS<T> *temp = First;  // Temporary pointer to hold the top node
-    no = First->data;              // Retrieve the data from the top node
-    First = First->next;           // Update the top pointer to the next node
-    delete temp;                   // Delete the old top node
+    struct NodeS<T> *temp = First;  
+    no = First->data;              
+    First = First->next;           
+    delete temp;                   
 
-    iCount--;                      // Decrement the count of nodes
+    iCount--;                      
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3222,14 +3222,14 @@ template <class T>
 void Stack<T>::Display()
 {
     cout << "Elements from Stack are : " << endl;
-    struct NodeS<T> *temp = First;  // Temporary pointer to traverse the stack
+    struct NodeS<T> *temp = First;  
 
     while (temp != NULL)            // Traverse until the end of the stack
     {
-        cout << temp->data << " ";  // Print the data of the current node
-        temp = temp->next;          // Move to the next node
+        cout << temp->data << " ";  
+        temp = temp->next;          
     }
-    cout << endl;                   // Print a newline at the end
+    cout << endl;                   
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3244,7 +3244,7 @@ void Stack<T>::Display()
 template <class T>
 int Stack<T>::CountNode()
 {
-    return iCount;                 // Return the count of nodes in the stack
+    return iCount;                  in the stack
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3612,8 +3612,8 @@ T Stack<T>::MiddleElement()
 template <class T>
 T Stack<T>::MiddleElementX()
 {
-    struct NodeS<T> *fastPtr = First;  // Fast pointer moves two steps at a time
-    struct NodeS<T> *slowPtr = First;  // Slow pointer moves one step at a time
+    struct NodeS<T> *fastPtr = First;  
+    struct NodeS<T> *slowPtr = First;  
 
     while (fastPtr != NULL && fastPtr->next != NULL)
     {
@@ -3634,7 +3634,7 @@ template <class T>
 struct nodeQ
 {
     T data;               // Stores the data of generic type T
-    struct nodeQ *next;   // Pointer to the next node in the queue
+    struct nodeQ *next;    in the queue
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3652,7 +3652,7 @@ class Queue
         int iCount;              // Counter for the number of elements in the queue
 
     public:
-        Queue();                 // Constructor to initialize an empty queue
+        Queue();                  
         void Enqueue(T);         // Function to insert an element into the queue
         void Dequeue();          // Function to remove an element from the queue
         void Display();          // Function to display all elements in the queue
@@ -3688,7 +3688,7 @@ template <class T>
 Queue<T>::Queue()
 {
     First = NULL;            // Initialize the queue to be empty
-    iCount = 0;              // Set the count of nodes to 0
+    iCount = 0;              
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3703,27 +3703,27 @@ Queue<T>::Queue()
 template <class T>
 void Queue<T>::Enqueue(T no)
 {
-    struct nodeQ<T> *newn = NULL;   // Pointer to create a new node
-    newn = new nodeQ<T>;           // Allocate memory for the new node
+    struct nodeQ<T> *newn = NULL;   
+    newn = new nodeQ<T>;           
 
-    newn->data = no;               // Set the data of the new node
-    newn->next = NULL;             // Initialize the next pointer of the new node to NULL
+    newn->data = no;               
+    newn->next = NULL;             
 
     if (First == NULL)             // If the queue is empty
     {
-        First = newn;              // Set the new node as the first node
+        First = newn;              
     }
     else                           // If the queue is not empty
     {
-        struct nodeQ<T> *temp = First; // Temporary pointer to traverse the queue
+        struct nodeQ<T> *temp = First; 
         while (temp->next != NULL)     // Traverse to the last node
         {
             temp = temp->next;
         }
 
-        temp->next = newn;             // Link the new node to the last node
+        temp->next = newn;             
     }
-    iCount++;                          // Increment the count of nodes
+    iCount++;                          
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3738,7 +3738,7 @@ void Queue<T>::Enqueue(T no)
 template <class T>
 void Queue<T>::Dequeue()
 {
-    T no;                           // Variable to store the data of the node being removed
+    T no;                           
 
     if (First == NULL)              // Check if the queue is empty
     {
@@ -3746,12 +3746,12 @@ void Queue<T>::Dequeue()
         return;
     }
 
-    struct nodeQ<T> *temp = First;  // Temporary pointer to hold the front node
-    no = First->data;               // Retrieve the data from the front node
-    First = First->next;            // Update the front pointer to the next node
-    delete temp;                    // Delete the old front node
+    struct nodeQ<T> *temp = First;  
+    no = First->data;               
+    First = First->next;            
+    delete temp;                    
 
-    iCount--;                       // Decrement the count of nodes
+    iCount--;                       
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3767,14 +3767,14 @@ template <class T>
 void Queue<T>::Display()
 {
     cout << "Elements from Queue are : " << endl;
-    struct nodeQ<T> *temp = First;  // Temporary pointer to traverse the queue
+    struct nodeQ<T> *temp = First;  
 
     while (temp != NULL)            // Traverse until the end of the queue
     {
-        cout << temp->data << " ";  // Print the data of the current node
-        temp = temp->next;          // Move to the next node
+        cout << temp->data << " ";  
+        temp = temp->next;          
     }
-    cout << endl;                   // Print a newline at the end
+    cout << endl;                   
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -3789,7 +3789,7 @@ void Queue<T>::Display()
 template <class T>
 int Queue<T>::CountNode()
 {
-    return iCount;                  // Return the count of nodes in the queue
+    return iCount;                   in the queue
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -4157,8 +4157,8 @@ T Queue<T>::MiddleElement()
 template <class T>
 T Queue<T>::MiddleElementX()
 {
-    struct nodeQ<T> *fastPtr = First;  // Fast pointer moves two steps at a time
-    struct nodeQ<T> *slowPtr = First;  // Slow pointer moves one step at a time
+    struct nodeQ<T> *fastPtr = First;  
+    struct nodeQ<T> *slowPtr = First;  
 
     while (fastPtr != NULL && fastPtr->next != NULL)
     {
@@ -4190,7 +4190,7 @@ private:
     int iSize;
 
 public:
-    SearchAlgorithms(int size);  // Constructor to initialize array size
+    SearchAlgorithms(int size);   
     ~SearchAlgorithms();         // Destructor to release array memory
     void Accept();               // Accept array elements
     void Display();              // Display array elements
@@ -4385,7 +4385,7 @@ private:
     int iSize;
 
 public:
-    SortAlgorithms(int size); // Constructor to initialize array size
+    SortAlgorithms(int size);  
     ~SortAlgorithms();        // Destructor to release array memory
     void Accept();            // Accept array elements
     void Display();           // Display array elements
@@ -4570,7 +4570,7 @@ void SortAlgorithms<T>::InsertionSort()
 template <class T>
 struct nodeBST
 {
-    T data;                    // Data of generic type T
+    T data;                    
     struct nodeBST<T> *lchild; // Pointer to left child
     struct nodeBST<T> *rchild; // Pointer to right child
 };
@@ -4589,7 +4589,7 @@ private:
     struct nodeBST<T> *Root; // Pointer to the root node
 
 public:
-    BinarySearchTree();     // Constructor
+    BinarySearchTree();     
     void Insert(T No);      // Function to insert an element
     void Inorder();         // Function for inorder traversal
     void Preorder();        // Function for preorder traversal
@@ -4636,7 +4636,7 @@ BinarySearchTree<T>::BinarySearchTree()
 template <class T>
 void BinarySearchTree<T>::Insert(T No)
 {
-    struct nodeBST<T> *newn = new nodeBST<T>; // Allocate memory for new node
+    struct nodeBST<T> *newn = new nodeBST<T>; 
 
     newn->data = No;
     newn->lchild = NULL;
